@@ -12,7 +12,7 @@
     section {
         border-radius: 1rem;
         background: #fff;
-        box-shadow: 0 2px 8px #868686;
+        box-shadow: 0 2px 8px #d1d1d1;
         padding: 1rem;
     }
 </style>

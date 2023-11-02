@@ -29,13 +29,21 @@
 				links: [
 					{
 						id: 0,
-						text: "Main",
+						text: "Products",
 						name: "home",
+						auth: false,
 					},
 					{
 						id: 1,
-						text: "Page one",
+						text: "Cart",
 						name: "pageOne",
+						auth: false,
+					},
+					{
+						id: 2,
+						text: "Admin",
+						name: "pageOne",
+						auth: true,
 					},
 				],
 			};
@@ -44,7 +52,6 @@
 			authorization(bool) {
 				// this.$store.commit('authorization', bool)
 				this.$store.dispatch("authorization/authenticate", bool);
-				console.log(bool);
 			},
 		},
 	};

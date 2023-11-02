@@ -6,7 +6,7 @@ import NotFound from "@/components/NotFound";
 import PageOne from "@/components/pages/PageOne";
 import MainPage from "@/components/pages/MainPage";
 
-import authorization from "@/store/authorization";
+import authorization from "@/store/modules/authorization";
 
 import App from "./App.vue";
 

@@ -25,7 +25,7 @@
 		},
 		data() {
 			return {
-				brandName: "Brand",
+				brandName: "VueShop",
 				links: [
 					{
 						id: 0,
@@ -41,10 +41,10 @@
 			};
 		},
 		methods: {
-			authorization(event) {
-				// this.$store.commit('authorization', event)
-				this.$store.dispatch("authorization/authenticate", event);
-				console.log(event);
+			authorization(bool) {
+				// this.$store.commit('authorization', bool)
+				this.$store.dispatch("authorization/authenticate", bool);
+				console.log(bool);
 			},
 		},
 	};

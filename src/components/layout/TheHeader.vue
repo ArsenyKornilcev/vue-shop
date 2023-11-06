@@ -5,15 +5,13 @@
 		</div>
 		<div class="menu">
 			<ul>
-				<template
-					v-for="link in links"
+				<li
+					v-for="link in availableLinks"
 					:key="link.id">
-					<li v-if="!link.auth || (link.auth && isAuth)">
-						<router-link :to="{ name: link.name }">{{
-							link.text
-						}}</router-link>
-					</li>
-				</template>
+					<router-link :to="{ name: link.name }">
+						{{ link.text }}
+					</router-link>
+				</li>
 			</ul>
 		</div>
 		<div class="auth">
@@ -43,6 +41,11 @@
 		computed: {
 			isAuth() {
 				return this.$store.state.authorization.isLoggedIn;
+			},
+			availableLinks() {
+				return this.links.filter(
+					(link) => !link.auth || (link.auth && this.isAuth)
+				);
 			},
 		},
 	};
@@ -99,6 +102,7 @@
 		background: #1aa582;
 		transition: 0.3s ease;
 		border: none;
+		cursor: pointer;
 	}
 	button:hover {
 		background: #178f71;

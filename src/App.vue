@@ -74,8 +74,8 @@
         text-align: center;
         
     }
-    .h2 {
+    h1 {
         font-size: 30px;
-        color: #4e4e4e;
+        color: rgb(56, 159, 116);
     }
 </style>

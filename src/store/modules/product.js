@@ -8,7 +8,7 @@ export default {
 					image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Books_HD_%288314929977%29.jpg/640px-Books_HD_%288314929977%29.jpg",
 					title: "Book Collection",
 					description:
-						"A collection of must-read books. All-time classics included!",
+						"A collection of must-read books. All-time classics included! A collection of must-read books. All-time classics included! A collection of must-read books. All-time classics included! A collection of must-read books. All-time classics included! A collection of must-read books. All-time classics included! A collection of must-read books. All-time classics included! A collection of must-read books. All-time classics included! A collection of must-read books. All-time classics included!",
 					price: 99.99,
 				},
 				{

@@ -1,20 +1,37 @@
 <template>
-	<the-section>
-        <h3>This is a main page</h3>
-        <p>It is a description for this section</p>
-    </the-section>
+    <div class="product-list">
+        <product-card
+		v-for="product in products"
+		:key="product.id"
+		:title="product.title"
+        :description="product.description"
+        :price="product.price"
+        :img-src="product.image"></product-card>
+    </div>
 </template>
 
 <script>
-	import TheSection from "@/components/layout/TheSection";
+	import ProductCard from "../custom/ProductCard.vue";
+
 	export default {
 		name: "ProductsPage",
-        components: {
-            TheSection
-        }
+		components: {
+			ProductCard,
+		},
+		computed: {
+			products() {
+				return this.$store.getters["product/product"];
+			},
+		},
 	};
 </script>
 
-<style>
-    
+<style scoped>
+    .product-list {
+        display: flex;
+        flex-flow: column wrap;
+        gap: 30px;
+        width: 70%;
+        margin: 0 auto;
+    }
 </style>

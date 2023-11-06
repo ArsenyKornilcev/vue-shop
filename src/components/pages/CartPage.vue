@@ -1,6 +1,6 @@
 <template>
-	<h2 class="text-center h2">Cart</h2>
-	
+	<h1 class="text-center">Cart</h1>
+
 	<the-section>
 		<h2>Section one</h2>
 		<p>Text container</p>

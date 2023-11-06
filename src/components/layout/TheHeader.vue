@@ -10,9 +10,12 @@
 				<li
 					v-for="link in availableLinks"
 					:key="link.id">
-					<router-link :to="{ name: link.name }">
-						{{ link.text }}
-					</router-link>
+					<div class="link">
+						<router-link :to="{ name: link.name }">
+							{{ link.text }}
+						</router-link>
+						<span v-if="link.count >= 0">{{ link.count }}</span>
+					</div>
 				</li>
 			</ul>
 		</div>
@@ -88,6 +91,11 @@
 		flex-flow: row wrap;
 		gap: 10px;
 	}
+	li {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 	a {
 		text-decoration: none;
 		color: inherit;
@@ -101,6 +109,21 @@
 	}
 	.brand-name a.router-link-active {
 		text-shadow: none;
+	}
+	.link {
+		position: relative;
+	}
+
+	.link span {
+		padding: 4px 10px;
+		font-weight: bold;
+		font-size: 10px;
+		border-radius: 15px;
+		color: #fff;
+		background: #61178f;
+		position: absolute;
+		top: -14px;
+		right: -24px;
 	}
 
 	button {

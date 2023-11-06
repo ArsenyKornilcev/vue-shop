@@ -42,6 +42,7 @@
 						text: "Cart",
 						name: "cart",
 						auth: false,
+						count: 0,
 					},
 					{
 						id: 2,

@@ -30,19 +30,19 @@
 					{
 						id: 0,
 						text: "Products",
-						name: "home",
+						name: "products",
 						auth: false,
 					},
 					{
 						id: 1,
 						text: "Cart",
-						name: "pageOne",
+						name: "cart",
 						auth: false,
 					},
 					{
 						id: 2,
 						text: "Admin",
-						name: "pageOne",
+						name: "admin",
 						auth: true,
 					},
 				],
@@ -50,7 +50,6 @@
 		},
 		methods: {
 			authorization(bool) {
-				// this.$store.commit('authorization', bool)
 				this.$store.dispatch("authorization/authenticate", bool);
 			},
 		},
@@ -70,4 +69,13 @@
 	main {
 		padding: 50px 0 80px;
 	}
+
+	.text-center {
+        text-align: center;
+        
+    }
+    .h2 {
+        font-size: 30px;
+        color: #4e4e4e;
+    }
 </style>

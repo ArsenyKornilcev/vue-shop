@@ -21,7 +21,7 @@
 				Sign In
 			</button>
 			<button
-				v-if="isAuth"
+				v-else
 				@click="authorization(false)">
 				Sign Out
 			</button>

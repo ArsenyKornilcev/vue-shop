@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import NotFound from "@/components/NotFound";
-import PageOne from "@/components/pages/PageOne";
-import MainPage from "@/components/pages/MainPage";
+import CartPage from '@/components/pages/CartPage';
+import AdminPage from '@/components/pages/AdminPage';
+import ProductsPage from "@/components/pages/ProductsPage";
 
 const router = createRouter({
 	history: createWebHistory(),
 	routes: [
 		{
 			path: "/",
-			component: MainPage,
-			name: "home",
+			component: ProductsPage,
+			name: "products",
 		},
 		{
 			path: "/:notFound(.*)",
@@ -18,8 +19,13 @@ const router = createRouter({
 		},
 		{
 			path: "/page-one",
-			component: PageOne,
-			name: "pageOne",
+			component: CartPage,
+			name: "cart",
+		},
+		{
+			path: "/page-one",
+			component: AdminPage,
+			name: "admin",
 		},
 	],
 });

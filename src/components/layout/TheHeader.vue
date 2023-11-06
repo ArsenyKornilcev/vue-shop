@@ -1,7 +1,9 @@
 <template>
 	<header>
-		<div class="logo">
-			{{ brandName }}
+		<div class="brand-name">
+			<router-link :to="{ name: 'products' }">
+				{{ brandName }}
+			</router-link>
 		</div>
 		<div class="menu">
 			<ul>
@@ -58,12 +60,14 @@
 		padding: 20px 10vw;
 		box-shadow: 0 0 6px #bdbdbd;
 		transition: 0.3s ease;
-		position: relative;
+		position: sticky;
+		top: 0;
+		background: #fff;
 	}
 	header:hover {
 		box-shadow: 0 0 10px #bdbdbd;
 	}
-	.logo {
+	.brand-name {
 		font-size: 24px;
 		font-weight: bold;
 	}
@@ -90,9 +94,15 @@
 		font-size: 18px;
 		transition: 0.3s ease;
 	}
+
+	a.router-link-active,
 	a:hover {
 		text-shadow: 0 0 1px #222;
 	}
+	.brand-name a.router-link-active {
+		text-shadow: none;
+	}
+
 	button {
 		border-radius: 5px;
 		padding: 8px 14px;

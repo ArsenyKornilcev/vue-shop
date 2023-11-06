@@ -1,40 +1,10 @@
 import { createApp } from "vue";
-import { createStore } from "vuex";
-import { createRouter, createWebHistory } from "vue-router";
 
-import NotFound from "@/components/NotFound";
-import PageOne from "@/components/pages/PageOne";
-import MainPage from "@/components/pages/MainPage";
-
-import authorization from "@/store/modules/authorization";
+import router from '@/router';
+import store from "@/store/store";
 
 import App from "./App.vue";
 
-const router = createRouter({
-	history: createWebHistory(),
-	routes: [
-		{
-			path: "/",
-			component: MainPage,
-			name: "home",
-		},
-		{
-			path: "/:notFound(.*)",
-			component: NotFound,
-		},
-		{
-			path: "/page-one",
-			component: PageOne,
-			name: "pageOne",
-		},
-	],
-});
-
-const store = createStore({
-	modules: {
-		authorization: authorization,
-	},
-});
 
 const app = createApp(App);
 

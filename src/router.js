@@ -18,12 +18,12 @@ const router = createRouter({
 			component: NotFound,
 		},
 		{
-			path: "/page-one",
+			path: "/cart",
 			component: CartPage,
 			name: "cart",
 		},
 		{
-			path: "/page-one",
+			path: "/admin",
 			component: AdminPage,
 			name: "admin",
 		},

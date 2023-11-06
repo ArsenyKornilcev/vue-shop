@@ -7,7 +7,11 @@
 		</the-header>
 		<main>
 			<the-container>
-				<router-view></router-view>
+				<router-view v-slot="{ Component }">
+					<transition name="fade">
+						<component :is="Component" />
+					</transition>
+				</router-view>
 			</the-container>
 		</main>
 	</div>
@@ -71,11 +75,23 @@
 	}
 
 	.text-center {
-        text-align: center;
-        
-    }
-    h1 {
-        font-size: 30px;
-        color: rgb(56, 159, 116);
-    }
+		text-align: center;
+	}
+	h1 {
+		font-size: 30px;
+		color: rgb(56, 159, 116);
+	}
+
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: opacity 0.5s ease;
+	}
+
+	.fade-enter-from,
+	.fade-leave-to {
+		opacity: 0;
+	}
+	body::-webkit-scrollbar {
+		width: 0;
+	}
 </style>

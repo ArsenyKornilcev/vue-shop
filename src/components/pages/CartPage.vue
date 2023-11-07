@@ -1,21 +1,42 @@
 <template>
 	<div>
-		<h1 class="text-center">Cart</h1>
+		<h1 class="text-center">Your cart</h1>
 
-		<the-section>
-			<h2>Section one</h2>
-			<p>Text container</p>
-		</the-section>
+		<div class="divider"></div>
+
+		<p class="text-center">Total Amount: <span class="label">0</span></p>
+
+		<div class="cart-items">
+			<cart-item></cart-item>
+		</div>
 	</div>
 </template>
 <script>
-	import TheSection from "../layout/TheSection.vue";
+	import CartItem from '../custom/CartItem.vue';
 
 	export default {
 		name: "CartPage",
 		components: {
-			TheSection,
+			CartItem
 		},
 	};
 </script>
-<style></style>
+<style scoped>
+	.divider {
+		height: 1px;
+		width: 33%;
+		margin: 0 auto;
+		background: #222;
+	}
+	.cart-items {
+		margin-top: 20px;
+		padding: 0 1vw;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 5vw;
+	}
+
+	p {
+		font-weight: bold;
+	}
+</style>

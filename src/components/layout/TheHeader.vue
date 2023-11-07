@@ -14,7 +14,7 @@
 						<router-link :to="{ name: link.name }">
 							{{ link.text }}
 						</router-link>
-						<span v-if="link.count >= 0">{{ link.count }}</span>
+						<span class="label label_top-right label_small" v-if="link.count >= 0">{{ link.count }}</span>
 					</div>
 				</li>
 			</ul>
@@ -89,7 +89,7 @@
 		list-style: none;
 		display: flex;
 		flex-flow: row wrap;
-		gap: 10px;
+		gap: 20px;
 	}
 	li {
 		display: flex;
@@ -101,6 +101,8 @@
 		color: inherit;
 		font-size: 18px;
 		transition: 0.3s ease;
+		display: block;
+		padding: 4px 16px;
 	}
 
 	a.router-link-active,
@@ -112,18 +114,6 @@
 	}
 	.link {
 		position: relative;
-	}
-
-	.link span {
-		padding: 4px 10px;
-		font-weight: bold;
-		font-size: 10px;
-		border-radius: 15px;
-		color: #fff;
-		background: #61178f;
-		position: absolute;
-		top: -14px;
-		right: -24px;
 	}
 
 	button {

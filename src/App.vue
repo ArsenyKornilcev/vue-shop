@@ -98,4 +98,24 @@
 	body::-webkit-scrollbar {
 		width: 0;
 	}
+
+	.label {
+		padding: 4px 18px;
+		font-weight: bold;
+		font-size: 16px;
+		border-radius: 15px;
+		color: #fff;
+		background: #61178f;
+	}
+
+	.label_small {
+		padding: 4px 10px;
+		font-size: 10px;
+	}
+
+	.label_top-right {
+		position: absolute;
+		top: -10px;
+		right: -12px;
+	}
 </style>

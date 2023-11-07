@@ -22,7 +22,7 @@
 	</the-section>
 </template>
 <script>
-	import TheSection from "../layout/TheSection.vue";
+	import TheSection from "../layout/TheCard.vue";
 
 	export default {
 		name: "ProductCard",

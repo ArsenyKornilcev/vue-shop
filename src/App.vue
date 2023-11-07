@@ -8,7 +8,9 @@
 		<main>
 			<the-container>
 				<router-view v-slot="{ Component }">
-					<transition name="fade">
+					<transition
+						name="fade"
+						mode="out-in">
 						<component :is="Component" />
 					</transition>
 				</router-view>
@@ -85,12 +87,13 @@
 
 	.fade-enter-active,
 	.fade-leave-active {
-		transition: opacity 0.5s ease;
+		transition: all 0.5s ease;
 	}
 
 	.fade-enter-from,
 	.fade-leave-to {
 		opacity: 0;
+		transform: scale(0.5);
 	}
 	body::-webkit-scrollbar {
 		width: 0;

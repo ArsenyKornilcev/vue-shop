@@ -12,7 +12,7 @@
 				Price per item: <span>${{ price }}</span>
 			</p>
 			<p>
-				Quantity: <span>{{ itemQuantity }}</span>
+				Quantity: <span>{{ quantity }}</span>
 			</p>
 		</div>
 
@@ -42,7 +42,7 @@
 		name: "CartItem",
 		data() {
 			return {
-				itemQuantity: 0,
+				quantity: 0,
 			};
 		},
 		components: {
@@ -51,28 +51,21 @@
 		props: {
 			title: String,
 			price: Number,
-			quantity: Number,
 		},
 		computed: {
 			totalPrice() {
-				return this.price * this.itemQuantity;
+				return this.price * this.quantity;
 			},
 		},
 		methods: {
 			add() {
-				this.itemQuantity++;
+				this.quantity++;
 			},
 			remove() {
-				if (this.itemQuantity >= 0) {
-					this.itemQuantity--;
+				if (this.quantity >= 0) {
+					this.quantity--;
 				}
 			},
-			setData() {
-				this.itemQuantity = this.quantity;
-			},
-		},
-		mounted() {
-			this.setData();
 		},
 	};
 </script>

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	import ProductCard from "../custom/ProductCard.vue";
+	import ProductCard from "../items/ProductCard.vue";
 
 	export default {
 		name: "ProductsPage",

@@ -58,16 +58,16 @@
 		border: none;
 		border-radius: 15px;
 		font-weight: bold;
-        color: #e8e8e8;
+		color: #e8e8e8;
 		cursor: pointer;
 		transition: 0.3s ease;
 	}
 	.btns button:hover {
 		color: #fff;
 	}
-    .btns button:active {
-        color: #e8e8e8;
-    }
+	.btns button:active {
+		color: #e8e8e8;
+	}
 	.btn_add {
 		background: #288c48;
 	}
@@ -83,7 +83,7 @@
 	.btn_remove:hover {
 		background: #9a2c2c;
 	}
-    .btn_remove:active {
-        background: #882727;
-    }
+	.btn_remove:active {
+		background: #882727;
+	}
 </style>

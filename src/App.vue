@@ -69,6 +69,7 @@
 	}
 	body {
 		margin: 0;
+		background: rgb(253, 253, 255);
 	}
 	html {
 		font-family: sans-serif;

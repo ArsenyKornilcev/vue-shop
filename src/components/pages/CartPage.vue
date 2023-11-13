@@ -12,7 +12,7 @@
 	</div>
 </template>
 <script>
-	import CartItem from '../custom/CartItem.vue';
+	import CartItem from '../items/CartItem.vue';
 
 	export default {
 		name: "CartPage",

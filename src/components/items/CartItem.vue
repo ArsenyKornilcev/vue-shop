@@ -4,19 +4,33 @@
 			<img
 				src=""
 				alt="" />
-			<h2>Title</h2>
+			<h2>{{ title }}</h2>
 		</div>
 
 		<div class="info">
-			<p>Price per item: <span>$0</span></p>
-			<p>Quantity: <span>0</span></p>
+			<p>
+				Price per item: <span>${{ price }}</span>
+			</p>
+			<p>
+				Quantity: <span>{{ itemQuantity }}</span>
+			</p>
 		</div>
 
-		<p class="total text-center">Total: <span>$0</span></p>
+		<p class="total text-center">
+			Total: <span>${{ totalPrice }}</span>
+		</p>
 
 		<div class="btns">
-			<button class="btn_add">Add</button>
-			<button class="btn_remove">Remove</button>
+			<button
+				class="btn_add"
+				@click="add">
+				Add
+			</button>
+			<button
+				class="btn_remove"
+				@click="remove">
+				Remove
+			</button>
 		</div>
 	</the-card>
 </template>
@@ -26,10 +40,40 @@
 
 	export default {
 		name: "CartItem",
+		data() {
+			return {
+				itemQuantity: 0,
+			};
+		},
 		components: {
 			TheCard,
 		},
-		props: {},
+		props: {
+			title: String,
+			price: Number,
+			quantity: Number,
+		},
+		computed: {
+			totalPrice() {
+				return this.price * this.itemQuantity;
+			},
+		},
+		methods: {
+			add() {
+				this.itemQuantity++;
+			},
+			remove() {
+				if (this.itemQuantity >= 0) {
+					this.itemQuantity--;
+				}
+			},
+			setData() {
+				this.itemQuantity = this.quantity;
+			},
+		},
+		mounted() {
+			this.setData();
+		},
 	};
 </script>
 

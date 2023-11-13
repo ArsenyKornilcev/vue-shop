@@ -4,7 +4,7 @@
 			<img
 				src=""
 				alt="" />
-			<h2 class="text-center">Title</h2>
+			<h2>Title</h2>
 		</div>
 
 		<div class="info">
@@ -34,6 +34,22 @@
 </script>
 
 <style scoped>
+	.img {
+		display: grid;
+		grid-template-columns: 100px 1fr;
+		gap: 20px;
+		align-items: center;
+		margin-bottom: 25px;
+	}
+	img {
+		display: block;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+	}
+	h2 {
+		margin: 0;
+	}
 	span {
 		font-weight: bold;
 	}
@@ -52,6 +68,7 @@
 	.btns {
 		display: flex;
 		gap: 10px;
+		justify-content: flex-end;
 	}
 	.btns button {
 		padding: 4px 16px;

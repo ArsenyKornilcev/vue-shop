@@ -20,7 +20,7 @@
 		},
 		computed: {
 			products() {
-				return this.$store.getters["product/product"];
+				return this.$store.getters["product/allProducts"];
 			},
 		},
 	};

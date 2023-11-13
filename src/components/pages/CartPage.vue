@@ -7,7 +7,10 @@
 		<p class="text-center">Total Amount: <span class="label">0</span></p>
 
 		<div class="cart-items">
-			<cart-item></cart-item>
+			<cart-item v-for="item in items" :key="item.id"
+			:title="item.title"
+			:price="item.price"
+			></cart-item>
 		</div>
 	</div>
 </template>
@@ -18,6 +21,11 @@
 		name: "CartPage",
 		components: {
 			CartItem
+		},
+		computed: {
+			items() {
+				return this.$store.getters["cart/cartItems"];
+			},
 		},
 	};
 </script>

@@ -30,7 +30,7 @@ export default {
 		};
 	},
 	getters: {
-		product(state) {
+		allProducts(state) {
 			return state.products;
 		},
 	},

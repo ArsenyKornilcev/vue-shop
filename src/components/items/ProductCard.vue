@@ -80,15 +80,21 @@
 	button {
 		margin-top: auto;
 		padding: 8px 18px;
-		color: #fff;
+
 		border: none;
 		border-radius: 15px;
-		background: #5f20a2;
+
+		background: #591e98;
+		color: #f3f3f3;
 		font-weight: bold;
 		transition: 0.3s ease;
 		cursor: pointer;
 	}
 	button:hover {
+		background: #6c25b7;
+		color: #fff;
+	}
+	button:active {
 		background: #4c1a83;
 		color: #dddddd;
 	}

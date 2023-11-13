@@ -5,6 +5,7 @@
 				{{ brandName }}
 			</router-link>
 		</div>
+
 		<div class="menu">
 			<ul>
 				<li
@@ -14,21 +15,19 @@
 						<router-link :to="{ name: link.name }">
 							{{ link.text }}
 						</router-link>
-						<span class="label label_top-right label_small" v-if="link.count >= 0">{{ link.count }}</span>
+						<span
+							class="label label_top-right label_small"
+							v-if="link.count >= 0"
+							>{{ link.count }}</span
+						>
 					</div>
 				</li>
 			</ul>
 		</div>
+
 		<div class="auth">
-			<button
-				v-if="!isAuth"
-				@click="authorization(true)">
-				Sign In
-			</button>
-			<button
-				v-else
-				@click="authorization(false)">
-				Sign Out
+			<button @click="authorization">
+				{{ authBtnText }}
 			</button>
 		</div>
 	</header>
@@ -39,8 +38,9 @@
 		props: ["links", "brandName"],
 		emits: ["auth"],
 		methods: {
-			authorization(bool) {
-				this.$emit("auth", bool);
+			authorization() {
+				const authBool = !this.isAuth;
+				this.$emit("auth", authBool);
 			},
 		},
 		computed: {
@@ -51,6 +51,13 @@
 				return this.links.filter(
 					(link) => !link.auth || (link.auth && this.isAuth)
 				);
+			},
+			authBtnText() {
+				if (!this.isAuth) {
+					return "Sign In";
+				} else {
+					return "Sign Out";
+				}
 			},
 		},
 	};
@@ -81,6 +88,7 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
+		transition: 0.3s ease;
 		transform: translate(-50%, -50%);
 	}
 	ul {
@@ -112,6 +120,9 @@
 	.brand-name a.router-link-active {
 		text-shadow: none;
 	}
+	.brand-name a:hover {
+		text-shadow: 0 0 1px #222;
+	}
 	.link {
 		position: relative;
 	}
@@ -121,14 +132,29 @@
 		padding: 8px 14px;
 		font-weight: bold;
 		font-size: 16px;
-		color: #fff;
-		background: #1aa582;
-		transition: 0.3s ease;
+		color: #f4f4f4;
+		background: #1cad88;
+		transition: all 0.3s ease;
 		border: none;
 		cursor: pointer;
+		min-width: 95px;
 	}
 	button:hover {
-		background: #178f71;
+		background: #1eb892;
+		color: #fff;
+	}
+	button:active {
 		color: #ebebeb;
+		background: #178f71;
+	}
+
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: opacity 0.5s ease;
+	}
+
+	.fade-enter-from,
+	.fade-leave-to {
+		opacity: 0;
 	}
 </style>

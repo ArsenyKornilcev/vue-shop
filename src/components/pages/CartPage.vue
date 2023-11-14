@@ -4,27 +4,31 @@
 
 		<div class="divider"></div>
 
-		<p class="text-center">Total Amount: <span class="label">0</span></p>
+		<p class="text-center">Total Amount: <span class="label">{{ total }}</span></p>
 
 		<div class="cart-items">
-			<cart-item v-for="item in items" :key="item.id"
-			:title="item.title"
-			:price="item.price"
-			></cart-item>
+			<cart-item
+				v-for="item in items"
+				:key="item.id"
+				:title="item.title"
+				:price="item.price"></cart-item>
 		</div>
 	</div>
 </template>
 <script>
-	import CartItem from '../items/CartItem.vue';
+	import CartItem from "../items/CartItem.vue";
 
 	export default {
 		name: "CartPage",
 		components: {
-			CartItem
+			CartItem,
 		},
 		computed: {
 			items() {
 				return this.$store.getters["cart/cartItems"];
+			},
+			total() {
+				return this.$store.getters["cart/getTotalAmount"];
 			},
 		},
 	};

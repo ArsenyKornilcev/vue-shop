@@ -3,6 +3,7 @@ export default {
 	state() {
 		return {
 			cartItems: [],
+			total: 0,
 			quantity: 0,
 		};
 	},
@@ -24,6 +25,9 @@ export default {
 		},
 		itemsQuantity(state) {
 			return state.quantity;
+		},
+		getTotalAmount(state) {
+			return state.total;
 		},
 	},
 };

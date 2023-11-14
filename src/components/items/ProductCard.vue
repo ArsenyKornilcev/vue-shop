@@ -16,7 +16,7 @@
 					{{ description }}
 				</div>
 
-				<button>Add to Cart</button>
+				<button @click="addItem(itemId)">Add to Cart</button>
 			</div>
 		</div>
 	</the-section>
@@ -34,7 +34,13 @@
 			title: String,
 			description: String,
 			price: Number,
+			itemId: String,
 		},
+		methods: {
+			addItem(id) {
+				this.$store.dispatch('cart/addItem', id)
+			}
+		}
 	};
 </script>
 <style scoped>

@@ -3,6 +3,7 @@
         <product-card
 		v-for="product in products"
 		:key="product.id"
+		:item-id="product.id"
 		:title="product.title"
         :description="product.description"
         :price="product.price"

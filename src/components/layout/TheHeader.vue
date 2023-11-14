@@ -17,8 +17,8 @@
 						</router-link>
 						<span
 							class="label label_top-right label_small"
-							v-if="link.count >= 0"
-							>{{ link.count }}</span
+							v-if="link.counter"
+							>{{ itemsQuantity }}</span
 						>
 					</div>
 				</li>
@@ -59,6 +59,9 @@
 					return "Sign Out";
 				}
 			},
+			itemsQuantity() {
+				return this.$store.getters['cart/itemsQuantity']
+			}
 		},
 	};
 </script>

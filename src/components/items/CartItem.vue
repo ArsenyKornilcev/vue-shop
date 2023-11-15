@@ -64,7 +64,7 @@
 				this.quantity++;
 			},
 			remove() {
-				if (this.quantity >= 0) {
+				if (this.quantity >= 1) {
 					this.quantity--;
 				}
 			},

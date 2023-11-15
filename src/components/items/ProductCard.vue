@@ -16,7 +16,7 @@
 					{{ description }}
 				</div>
 
-				<button @click="addItem(itemId)">Add to Cart</button>
+				<button @click="addItem">Add to Cart</button>
 			</div>
 		</div>
 	</the-section>
@@ -37,10 +37,11 @@
 			itemId: String,
 		},
 		methods: {
-			addItem(id) {
-				this.$store.dispatch('cart/addItem', id)
-			}
-		}
+			addItem() {
+				const obj = { id: this.itemId };
+				this.$store.dispatch("cart/addItem", obj);
+			},
+		},
 	};
 </script>
 <style scoped>

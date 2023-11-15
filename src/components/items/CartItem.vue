@@ -2,8 +2,7 @@
 	<the-card>
 		<div class="img">
 			<img
-				src=""
-				alt="" />
+				:src="imgSrc" />
 			<h2>{{ title }}</h2>
 		</div>
 
@@ -51,6 +50,7 @@
 		props: {
 			title: String,
 			price: Number,
+			imgSrc: String,
 		},
 		computed: {
 			totalPrice() {

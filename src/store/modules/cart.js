@@ -9,14 +9,16 @@ export default {
 	},
 	mutations: {
 		addItem(state, payload) {
-			// state.cartItems.append(payload);
+			state.cartItems.push(payload);
 			state.quantity++;
 			console.log(payload);
 		},
 	},
 	actions: {
 		addItem(context, payload) {
-			context.commit("addItem", payload);
+			const products = context.rootGetters["product/allProducts"];
+			const productForCart = products.find((product) => product.id === payload.id)
+			context.commit("addItem", productForCart);
 		},
 	},
 	getters: {

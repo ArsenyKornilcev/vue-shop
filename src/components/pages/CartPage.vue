@@ -11,7 +11,8 @@
 				v-for="item in items"
 				:key="item.id"
 				:title="item.title"
-				:price="item.price"></cart-item>
+				:price="item.price"
+				:img-src="item.image"></cart-item>
 		</div>
 	</div>
 </template>

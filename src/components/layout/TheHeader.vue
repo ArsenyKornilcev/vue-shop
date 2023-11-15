@@ -73,7 +73,7 @@
 		padding: 20px 10vw;
 		box-shadow: 0 0 6px #bdbdbd;
 		transition: 0.3s ease;
-		position: sticky;
+		position: relative;
 		top: 0;
 		background: #fff;
 	}

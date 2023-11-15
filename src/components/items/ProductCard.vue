@@ -38,8 +38,8 @@
 		},
 		methods: {
 			addItem() {
-				const obj = { id: this.itemId };
-				this.$store.dispatch("cart/addItem", obj);
+				const payload = { id: this.itemId };
+				this.$store.dispatch("cart/addItem", payload);
 			},
 		},
 	};

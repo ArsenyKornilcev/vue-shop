@@ -9,18 +9,42 @@ export default {
 	},
 	mutations: {
 		addItem(state, payload) {
-			state.cartItems.push(payload);
+			const itemInCart = state.cartItems.find(
+				(item) => item.id === payload.id
+			);
+
+			if (itemInCart) {
+				itemInCart.quantity++;
+				state.quantity++;
+				state.total += itemInCart.price;
+				return;
+			}
+
+			const newItem = {
+				id: payload.id,
+				image: payload.image,
+				title: payload.title,
+				description: payload.description,
+				price: payload.price,
+				quantity: 1,
+			};
+
+			state.cartItems.push(newItem);
+			state.total += newItem.price;
 			state.quantity++;
-			console.log(payload);
 		},
 		removeItem(state, payload) {
 			const productToRemoveIndex = state.cartItems.findIndex(
 				(item) => item.id === payload.id
 			);
-			console.log(payload.id)
-			console.log(productToRemoveIndex);
-			state.cartItems.splice(productToRemoveIndex, 1);
+			const productToRemove = state.cartItems[productToRemoveIndex];
+
+			if (productToRemove.quantity == 1) {
+				state.cartItems.splice(productToRemoveIndex, 1);
+			}
+			productToRemove.quantity--;
 			state.quantity--;
+			state.total -= productToRemove.price;
 		},
 	},
 	actions: {

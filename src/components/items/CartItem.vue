@@ -10,7 +10,7 @@
 				Price per item: <span>${{ price }}</span>
 			</p>
 			<p>
-				Quantity: <span>{{ quantity }}</span>
+				Quantity: <span>{{ qty }}</span>
 			</p>
 		</div>
 
@@ -38,11 +38,6 @@
 
 	export default {
 		name: "CartItem",
-		data() {
-			return {
-				quantity: 1,
-			};
-		},
 		components: {
 			TheCard,
 		},
@@ -51,25 +46,23 @@
 			price: Number,
 			imgSrc: String,
 			id: String,
+			qty: Number,
 		},
 		computed: {
 			totalPrice() {
-				const total = this.price * this.quantity;
+				const total = this.price * this.qty;
 				const roundedTotal = total.toFixed(2);
 				return roundedTotal;
 			},
 		},
 		methods: {
 			add() {
-				this.quantity++;
+				const payload = { id: this.id };
+				this.$store.dispatch("cart/addItem", payload);
 			},
 			remove() {
-				if (this.quantity > 1) {
-					this.quantity--;
-				} else {
-					const payload = { id: this.id };
-					this.$store.dispatch("cart/removeItem", payload);
-				}
+				const payload = { id: this.id };
+				this.$store.dispatch("cart/removeItem", payload);
 			},
 		},
 	};

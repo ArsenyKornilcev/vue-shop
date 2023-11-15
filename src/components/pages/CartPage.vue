@@ -5,7 +5,7 @@
 		<div class="divider"></div>
 
 		<p class="text-center">
-			Total Amount: <span class="label">{{ total }}</span>
+			Total Amount: <span class="label">${{ roundedTotal }}</span>
 		</p>
 
 		<div class="cart-items">
@@ -15,7 +15,8 @@
 				:id="item.id"
 				:title="item.title"
 				:price="item.price"
-				:img-src="item.image"></cart-item>
+				:img-src="item.image"
+				:qty="item.quantity"></cart-item>
 		</div>
 	</div>
 </template>
@@ -31,9 +32,10 @@
 			items() {
 				return this.$store.getters["cart/cartItems"];
 			},
-			total() {
-				return this.$store.getters["cart/getTotalAmount"];
-			},
+			roundedTotal() {
+				const total = this.$store.getters["cart/getTotalAmount"]
+				return total.toFixed(2)
+			}
 		},
 	};
 </script>

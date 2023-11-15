@@ -1,8 +1,7 @@
 <template>
 	<the-card>
 		<div class="img">
-			<img
-				:src="imgSrc" />
+			<img :src="imgSrc" />
 			<h2>{{ title }}</h2>
 		</div>
 
@@ -41,7 +40,7 @@
 		name: "CartItem",
 		data() {
 			return {
-				quantity: 0,
+				quantity: 1,
 			};
 		},
 		components: {
@@ -51,11 +50,12 @@
 			title: String,
 			price: Number,
 			imgSrc: String,
+			id: String,
 		},
 		computed: {
 			totalPrice() {
 				const total = this.price * this.quantity;
-				const roundedTotal = total.toFixed(2)
+				const roundedTotal = total.toFixed(2);
 				return roundedTotal;
 			},
 		},
@@ -64,8 +64,11 @@
 				this.quantity++;
 			},
 			remove() {
-				if (this.quantity >= 1) {
+				if (this.quantity > 1) {
 					this.quantity--;
+				} else {
+					const payload = { id: this.id };
+					this.$store.dispatch("cart/removeItem", payload);
 				}
 			},
 		},

@@ -4,12 +4,15 @@
 
 		<div class="divider"></div>
 
-		<p class="text-center">Total Amount: <span class="label">{{ total }}</span></p>
+		<p class="text-center">
+			Total Amount: <span class="label">{{ total }}</span>
+		</p>
 
 		<div class="cart-items">
 			<cart-item
 				v-for="item in items"
 				:key="item.id"
+				:id="item.id"
 				:title="item.title"
 				:price="item.price"
 				:img-src="item.image"></cart-item>

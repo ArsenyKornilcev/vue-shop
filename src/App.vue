@@ -113,10 +113,4 @@
 		padding: 4px 10px;
 		font-size: 10px;
 	}
-
-	.label_top-right {
-		position: absolute;
-		top: -10px;
-		right: -12px;
-	}
 </style>

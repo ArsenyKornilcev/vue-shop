@@ -16,7 +16,7 @@
 							{{ link.text }}
 						</router-link>
 						<span
-							class="label label_top-right label_small"
+							class="label label_small"
 							v-if="link.counter"
 							>{{ itemsQuantity }}</span
 						>
@@ -83,6 +83,8 @@
 	.brand-name {
 		font-size: 24px;
 		font-weight: bold;
+		display: flex;
+		align-items: center;
 	}
 	.menu {
 		display: flex;
@@ -113,7 +115,6 @@
 		font-size: 18px;
 		transition: 0.3s ease;
 		display: block;
-		padding: 4px 16px;
 	}
 
 	a.router-link-active,
@@ -127,7 +128,8 @@
 		text-shadow: 0 0 1px #222;
 	}
 	.link {
-		position: relative;
+		display: flex;
+		gap: 10px;
 	}
 
 	button {

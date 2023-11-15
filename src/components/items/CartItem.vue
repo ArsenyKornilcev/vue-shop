@@ -54,7 +54,9 @@
 		},
 		computed: {
 			totalPrice() {
-				return this.price * this.quantity;
+				const total = this.price * this.quantity;
+				const roundedTotal = total.toFixed(2)
+				return roundedTotal;
 			},
 		},
 		methods: {

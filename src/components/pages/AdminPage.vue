@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h2 class="text-center">This is a admin page</h2>
+		<h2 class="text-center">This is an admin page</h2>
 
 		<the-form
 			@custom-submit="addProduct"

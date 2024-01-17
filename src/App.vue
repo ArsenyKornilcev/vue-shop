@@ -66,13 +66,11 @@
 <style>
 	* {
 		box-sizing: border-box;
+		font-family: sans-serif;
 	}
 	body {
 		margin: 0;
 		background: rgb(246, 246, 249);
-	}
-	html {
-		font-family: sans-serif;
 	}
 	main {
 		padding: 50px 0 80px;

@@ -80,7 +80,7 @@
 	header:hover {
 		box-shadow: 0 0 10px #bdbdbd;
 	}
-	.brand-name {
+	.brand-name a {
 		font-size: 24px;
 		font-weight: bold;
 		display: flex;

@@ -33,16 +33,19 @@
 
 			<div class="buttons">
 				<button
+					class="btn btn_submit"
 					@click="submit"
 					v-if="!submitItemBtn">
 					{{ submitBtnText }}
 				</button>
 				<button
+					class="btn btn_submit"
 					@click="submitItem"
 					v-else>
 					{{ submitBtnText }}
 				</button>
 				<button
+					class="btn btn_reset"
 					type="reset"
 					v-if="resetBtnText">
 					{{ resetBtnText }}
@@ -79,30 +82,73 @@
 		},
 	};
 </script>
-<style scoped>
-	.column {
-		display: flex;
-		flex-flow: column wrap;
-		gap: 5px;
-	}
-	.buttons {
-		display: flex;
-		gap: 10px;
-	}
+<style scoped lang="sass">
+	.column
+		display: flex
+		flex-flow: column wrap
+		gap: 5px
 
-	.inputs {
-		display: flex;
-		flex-flow: column wrap;
-		gap: 10px;
-	}
+	.buttons
+		display: flex
+		gap: 10px
 
-	form .buttons {
-		margin-top: 5px;
-	}
+	.btn
+		padding: 8px 12px
+		font-weight: bold
+		border-radius: 10px
+		border: none
+		cursor: pointer
+		color: #fff
 
-	form {
-		display: flex;
-		flex-flow: column wrap;
-		gap: 10px;
-	}
+		&_submit
+			background: #288c48
+
+			&:hover
+				background: #2c9a4f
+			&:active
+				background: #288c48
+		&_reset
+			background: #882727
+
+			&:hover 
+				background: #9a2c2c
+			&:active 
+				background: #882727
+	
+
+	.inputs
+		display: flex
+		flex-flow: column wrap
+		gap: 10px
+
+	label
+		font-weight: 600
+		margin-left: 5px
+		transition: .3s ease
+		color: #737373
+	
+	input, textarea
+		padding: 8px 10px
+		font-size: 15px
+		font-weight: bold
+		border-radius: 5px
+		outline: none
+		border: 1px solid #dadada
+
+	textarea
+		max-width: 100%
+		resize: vertical 
+		min-height: 100px
+		max-height: 200px
+
+
+	form
+		display: flex
+		flex-flow: column wrap
+		gap: 10px
+		max-width: 400px
+		margin: 0 auto
+
+		.buttons
+			margin-top: 5px
 </style>

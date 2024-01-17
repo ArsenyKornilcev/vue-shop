@@ -1,4 +1,4 @@
-# vuex
+# vue-shop (frontend)
 
 ## Project setup
 ```

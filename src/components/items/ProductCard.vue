@@ -76,6 +76,8 @@
 	img {
 		display: block;
 		max-width: 180px;
+		width: 180px;
+		height: 100%;
 		aspect-ratio: 1;
 		object-fit: cover;
 		border-radius: 15px;

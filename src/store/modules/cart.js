@@ -1,5 +1,6 @@
 export default {
 	namespaced: true,
+
 	state() {
 		return {
 			cartItems: [],
@@ -7,6 +8,7 @@ export default {
 			quantity: 0,
 		};
 	},
+
 	mutations: {
 		addItem(state, payload) {
 			const itemInCart = state.cartItems.find(
@@ -47,6 +49,7 @@ export default {
 			state.total -= productToRemove.price;
 		},
 	},
+
 	actions: {
 		addItem(context, payload) {
 			const products = context.rootGetters["product/allProducts"];
@@ -59,6 +62,7 @@ export default {
 			context.commit("removeItem", payload);
 		},
 	},
+	
 	getters: {
 		cartItems(state) {
 			return state.cartItems;

@@ -1,5 +1,6 @@
 export default {
 	namespaced: true,
+
 	state() {
 		return {
 			products: [
@@ -29,6 +30,44 @@ export default {
 			],
 		};
 	},
+
+	mutations: {
+		addProduct(state, payload) {
+			const newProduct = {
+				id: payload.id,
+				image: payload.image,
+				title: payload.title,
+				description: payload.description,
+				price: payload.price,
+			};
+
+			state.products.push(newProduct);
+		},
+
+		// removeItem(state, payload) {
+		// 	const productToRemoveIndex = state.cartItems.findIndex(
+		// 		(item) => item.id === payload.id
+		// 	);
+		// 	const productToRemove = state.cartItems[productToRemoveIndex];
+
+		// 	if (productToRemove.quantity == 1) {
+		// 		state.cartItems.splice(productToRemoveIndex, 1);
+		// 	}
+		// 	productToRemove.quantity--;
+		// 	state.quantity--;
+		// 	state.total -= productToRemove.price;
+		// },
+	},
+
+	actions: {
+		addProduct(context, payload) {
+			context.commit("addProduct", payload);
+		},
+		removeProduct(context, payload) {
+			context.commit("removeProduct", payload);
+		},
+	},
+
 	getters: {
 		allProducts(state) {
 			return state.products;

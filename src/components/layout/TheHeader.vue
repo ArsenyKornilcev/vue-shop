@@ -60,8 +60,8 @@
 				}
 			},
 			itemsQuantity() {
-				return this.$store.getters['cart/itemsQuantity']
-			}
+				return this.$store.getters["cart/itemsQuantity"];
+			},
 		},
 	};
 </script>

@@ -92,11 +92,14 @@
 					...this.formInputs,
 					...this.formTextareas,
 				];
-				console.log(this.formInputs);
-				console.log(newProduct);
+
 				// if (this.validate(newProduct)) {
-				// 	this.$emit("custom-submit", this.newProduct);
+					this.$emit("custom-submit", newProduct);
 				// }
+
+				for (let obj of newProduct) {
+					obj.value = "";
+				}
 			},
 
 			submit() {

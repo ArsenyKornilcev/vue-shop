@@ -14,6 +14,7 @@
 					<input
 						:id="input.id"
 						:type="input.type"
+						:required="input.required"
 						:placeholder="input.placeholder" />
 				</div>
 				<div

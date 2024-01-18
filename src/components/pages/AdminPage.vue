@@ -22,12 +22,20 @@
 						id: "i1",
 						label: "Title",
 						type: "text",
+						required: true,
 					},
 					{
 						id: "i2",
 						label: "Price",
 						type: "number",
+						required: true,
 					},
+					{
+						id: 'i3',
+						label: "Image URL",
+						type: 'text',
+						required: false,
+					}
 				],
 				textareas: [
 					{

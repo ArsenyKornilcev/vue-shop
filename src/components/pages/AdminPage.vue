@@ -5,7 +5,7 @@
 		<the-form
 			@custom-submit="addProduct"
 			resetBtnText="Reset"
-			submitItemBtn="true"
+			:submitItemBtn=true
 			submitBtnText="Submit"
 			:inputs="inputs"
 			:textareas="textareas"></the-form>
@@ -13,6 +13,7 @@
 </template>
 <script>
 	import TheForm from "../layout/TheForm.vue";
+	
 	export default {
 		name: "AdminPage",
 		data() {
@@ -31,11 +32,11 @@
 						required: true,
 					},
 					{
-						id: 'i3',
+						id: "i3",
 						label: "Image URL",
-						type: 'text',
+						type: "text",
 						required: false,
-					}
+					},
 				],
 				textareas: [
 					{

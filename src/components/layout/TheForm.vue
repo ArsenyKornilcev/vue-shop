@@ -4,22 +4,26 @@
 			<div class="inputs">
 				<div
 					class="column"
-					v-for="input in inputs"
+					v-for="input in formInputs"
 					:key="input.id">
 					<label
 						:for="input.id"
 						v-if="input.label"
 						>{{ input.label }}</label
 					>
+
 					<input
 						:id="input.id"
 						:type="input.type"
 						:required="input.required"
-						:placeholder="input.placeholder" />
+						:value="input.value"
+						:placeholder="input.placeholder"
+						@input="input.value = $event.target.value" />
 				</div>
+
 				<div
 					class="column"
-					v-for="textarea in textareas"
+					v-for="textarea in formTextareas"
 					:key="textarea.id">
 					<label
 						:for="textarea.id"
@@ -28,7 +32,12 @@
 					>
 					<textarea
 						:id="textarea.id"
-						:placeholder="textarea.placeholder"></textarea>
+						:required="textarea.required"
+						:value="textarea.value"
+						:placeholder="textarea.placeholder"
+						@input="
+							textarea.value = $event.target.value
+						"></textarea>
 				</div>
 			</div>
 
@@ -39,12 +48,14 @@
 					v-if="!submitItemBtn">
 					{{ submitBtnText }}
 				</button>
+
 				<button
 					class="btn btn_submit"
 					@click="submitItem"
 					v-else>
 					{{ submitBtnText }}
 				</button>
+
 				<button
 					class="btn btn_reset"
 					type="reset"
@@ -55,13 +66,18 @@
 		</form>
 	</div>
 </template>
+
 <script>
 	export default {
+		name: "TheForm",
+
 		data() {
 			return {
-				newProduct: null,
+				formInputs: [],
+				formTextareas: [],
 			};
 		},
+
 		props: {
 			inputs: Array,
 			textareas: Array,
@@ -69,20 +85,56 @@
 			submitBtnText: String,
 			submitItemBtn: Boolean, // if defined form will provide item on submit action
 		},
+
 		methods: {
 			submitItem() {
-				this.newProduct = {
-					...this.inputs,
-					...this.textareas,
-				};
-				this.$emit("custom-submit", this.newProduct);
+				let newProduct = [
+					...this.formInputs,
+					...this.formTextareas,
+				];
+				console.log(this.formInputs);
+				console.log(newProduct);
+				// if (this.validate(newProduct)) {
+				// 	this.$emit("custom-submit", this.newProduct);
+				// }
 			},
+
 			submit() {
 				this.$emit("custom-submit");
 			},
+
+			validate(item = null) {
+				if (item) {
+					for (let prop in item) {
+						if (
+							prop.type === "text" &&
+							prop.required === true &&
+							prop.value === ""
+						) {
+							return true;
+						}
+					}
+				} else {
+					return false;
+				}
+			},
+		},
+
+		mounted() {
+			this.formInputs = this.inputs.map((item) => ({ ...item }));
+			this.formTextareas = this.textareas.map((item) => ({ ...item }));
+
+			for (let input of this.formInputs) {
+				input["value"] = "";
+			}
+
+			for (let textarea of this.formTextareas) {
+				textarea["value"] = "";
+			}
 		},
 	};
 </script>
+
 <style scoped lang="sass">
 	.column
 		display: flex
@@ -111,11 +163,11 @@
 		&_reset
 			background: #882727
 
-			&:hover 
+			&:hover
 				background: #9a2c2c
-			&:active 
+			&:active
 				background: #882727
-	
+
 
 	.inputs
 		display: flex
@@ -127,7 +179,7 @@
 		margin-left: 5px
 		transition: .3s ease
 		color: #737373
-	
+
 	input, textarea
 		padding: 8px 10px
 		font-size: 15px
@@ -138,7 +190,7 @@
 
 	textarea
 		max-width: 100%
-		resize: vertical 
+		resize: vertical
 		min-height: 100px
 		max-height: 200px
 

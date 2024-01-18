@@ -33,9 +33,17 @@
 				return this.$store.getters["cart/cartItems"];
 			},
 			roundedTotal() {
-				const total = this.$store.getters["cart/getTotalAmount"]
-				return total.toFixed(2)
-			}
+				const total = this.$store.getters["cart/getTotalAmount"];
+				let fixedTotal = total.toFixed(2);
+				console.log(total)
+				console.log(fixedTotal)
+
+				if (total < 0) {
+					fixedTotal = 0;
+				}
+
+				return fixedTotal;
+			},
 		},
 	};
 </script>

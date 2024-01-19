@@ -2,44 +2,23 @@
 	<div>
 		<form @submit.prevent>
 			<div class="inputs">
-				<div
-					class="column"
+				<input-field
 					v-for="input in formInputs"
-					:key="input.id">
-					<label
-						:for="input.id"
-						v-if="input.label">
-						{{ input.label }}
-					</label>
+					:key="input.id"
+					:label="input.label"
+					:id="input.id"
+					:type="input.type"
+					:required="input.required"
+					:placeholder="input.placeholder"></input-field>
 
-					<input
-						:id="input.id"
-						:type="input.type"
-						:required="input.required"
-						:placeholder="input.placeholder"
-						@input="input.value = $event.target.value" />
-				</div>
-
-				<div
-					class="column"
+				<input-field
 					v-for="textarea in formTextareas"
-					:key="textarea.id">
-					<label
-						:for="textarea.id"
-						v-if="textarea.label">
-						{{ textarea.label }}
-					</label>
-					<textarea
-						:id="textarea.id"
-						:required="textarea.required"
-						:value="textarea.value"
-						:placeholder="textarea.placeholder"
-						autocomplete
-						autocorrect
-						@input="
-							textarea.value = $event.target.value
-						"></textarea>
-				</div>
+					:textarea=true
+					:key="textarea.id"
+					:label="textarea.label"
+					:id="textarea.id"
+					:required="textarea.required"
+					:placeholder="textarea.placeholder"></input-field>
 			</div>
 
 			<div class="buttons">
@@ -69,8 +48,14 @@
 </template>
 
 <script>
+	import InputField from "./InputField.vue";
+
 	export default {
 		name: "TheForm",
+
+		components: {
+			InputField,
+		},
 
 		data() {
 			return {
@@ -167,31 +152,10 @@
 			&:active
 				background: #882727
 
-
 	.inputs
 		display: flex
 		flex-flow: column wrap
 		gap: 10px
-
-	label
-		font-weight: 600
-		margin-left: 5px
-		transition: .3s ease
-		color: #737373
-
-	input, textarea
-		padding: 8px 10px
-		font-size: 15px
-		font-weight: bold
-		border-radius: 5px
-		outline: none
-		border: 1px solid #dadada
-
-	textarea
-		max-width: 100%
-		resize: vertical
-		min-height: 100px
-		max-height: 200px
 
 	form
 		display: flex

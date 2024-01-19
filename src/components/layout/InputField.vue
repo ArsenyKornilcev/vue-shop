@@ -1,6 +1,7 @@
 <template>
-	<div class="">
+	<div class="container">
 		<label
+			:class="{ field_error: errorMessage !== '' }"
 			:for="id"
 			v-if="label">
 			{{ label }}
@@ -8,7 +9,7 @@
 
 		<textarea
 			v-if="textarea"
-			:class="{ 'field_error': errorMessage != '' }"
+			:class="{ field_error: errorMessage !== '' }"
 			:id="id"
 			:type="type"
 			:required="required"
@@ -18,7 +19,7 @@
 
 		<input
 			v-else
-			:class="{ 'field_error': errorMessage != '' }"
+			:class="{ field_error: errorMessage !== '' }"
 			:id="id"
 			:type="type"
 			:required="required"
@@ -54,27 +55,40 @@
 
 		methods: {
 			validate() {
-				if (this.type === "number") {
-					if (this.value.includes("e")) {
-						this.errorMessage = "There should be only numbers";
-					}
+				if (this.type === "number" && this.value < 0) {
+					this.errorMessage = "Price should be a positive number.";
+
+					return;
 				}
 
-				if (this.type === "text" && this.required && this.value === "") {
-					this.errorMessage = "This field is required. Please, fill it."
+				if (
+					this.required &&
+					this.value === ""
+				) {
+					this.errorMessage =
+						"This field is required. Please, fill it.";
+
+					return;
 				}
 
 				this.errorMessage = "";
+				this.$emit("validate", this.value);
 			},
 		},
 	};
 </script>
 
 <style lang="sass" scoped>
-	div
+	.container
 		display: flex
 		flex-flow: column wrap
 		gap: 5px
+
+	label
+		font-weight: 600
+		margin-left: 5px
+		transition: .3s ease
+		color: #737373
 
 	input, textarea
 		padding: 8px 10px
@@ -84,9 +98,17 @@
 		outline: none
 		border: 1px solid #dadada
 
+	textarea
+		max-width: 100%
+		resize: vertical
+		min-height: 100px
+		max-height: 200px
+
 	.field_error
 		border-color: #d02020
+		color: #d02020
 
 	.error
 		color: #d02020
+		margin-top: 2px
 </style>

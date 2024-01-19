@@ -8,15 +8,14 @@
 					:key="input.id">
 					<label
 						:for="input.id"
-						v-if="input.label"
-						>{{ input.label }}</label
-					>
+						v-if="input.label">
+						{{ input.label }}
+					</label>
 
 					<input
 						:id="input.id"
 						:type="input.type"
 						:required="input.required"
-						:value="input.value"
 						:placeholder="input.placeholder"
 						@input="input.value = $event.target.value" />
 				</div>
@@ -27,14 +26,16 @@
 					:key="textarea.id">
 					<label
 						:for="textarea.id"
-						v-if="textarea.label"
-						>{{ textarea.label }}</label
-					>
+						v-if="textarea.label">
+						{{ textarea.label }}
+					</label>
 					<textarea
 						:id="textarea.id"
 						:required="textarea.required"
 						:value="textarea.value"
 						:placeholder="textarea.placeholder"
+						autocomplete
+						autocorrect
 						@input="
 							textarea.value = $event.target.value
 						"></textarea>
@@ -88,14 +89,11 @@
 
 		methods: {
 			submitItem() {
-				let newProduct = [
-					...this.formInputs,
-					...this.formTextareas,
-				];
+				let newProduct = [...this.formInputs, ...this.formTextareas];
 
-				// if (this.validate(newProduct)) {
+				if (this.validate()) {
 					this.$emit("custom-submit", newProduct);
-				// }
+				}
 
 				for (let obj of newProduct) {
 					obj.value = "";
@@ -103,22 +101,20 @@
 			},
 
 			submit() {
-				this.$emit("custom-submit");
+				if (this.validate()) {
+					this.$emit("custom-submit");
+				}
 			},
 
-			validate(item = null) {
-				if (item) {
-					for (let prop in item) {
-						if (
-							prop.type === "text" &&
-							prop.required === true &&
-							prop.value === ""
-						) {
-							return true;
-						}
+			validate() {
+				for (let input in this.formInputs) {
+					if (
+						input.type === "text" &&
+						input.required === true &&
+						input.value === ""
+					) {
+						return true;
 					}
-				} else {
-					return false;
 				}
 			},
 		},
@@ -196,7 +192,6 @@
 		resize: vertical
 		min-height: 100px
 		max-height: 200px
-
 
 	form
 		display: flex

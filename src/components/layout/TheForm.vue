@@ -9,16 +9,20 @@
 					:id="input.id"
 					:type="input.type"
 					:required="input.required"
-					:placeholder="input.placeholder"></input-field>
+					:placeholder="input.placeholder"
+					:validate="validate"
+					@custom-input="input.value = $event"></input-field>
 
 				<input-field
 					v-for="textarea in formTextareas"
-					:textarea=true
+					:textarea="true"
 					:key="textarea.id"
 					:label="textarea.label"
 					:id="textarea.id"
 					:required="textarea.required"
-					:placeholder="textarea.placeholder"></input-field>
+					:placeholder="textarea.placeholder"
+					:validate="validate"
+					@custom-input="textarea.value = $event"></input-field>
 			</div>
 
 			<div class="buttons">
@@ -69,16 +73,15 @@
 			textareas: Array,
 			resetBtnText: String,
 			submitBtnText: String,
-			submitItemBtn: Boolean, // if defined form will provide item on submit action
+			submitItemBtn: Boolean,  // if defined form will provide item on submit action
+			validate: Function,
 		},
 
 		methods: {
 			submitItem() {
 				let newProduct = [...this.formInputs, ...this.formTextareas];
 
-				if (this.validate()) {
-					this.$emit("custom-submit", newProduct);
-				}
+				this.$emit("custom-submit", newProduct);
 
 				for (let obj of newProduct) {
 					obj.value = "";
@@ -86,21 +89,7 @@
 			},
 
 			submit() {
-				if (this.validate()) {
-					this.$emit("custom-submit");
-				}
-			},
-
-			validate() {
-				for (let input in this.formInputs) {
-					if (
-						input.type === "text" &&
-						input.required === true &&
-						input.value === ""
-					) {
-						return true;
-					}
-				}
+				this.$emit("custom-submit");
 			},
 		},
 

@@ -15,7 +15,7 @@
 			:required="required"
 			:placeholder="placeholder"
 			v-model="value"
-			@input="validate()" />
+			@input="input" />
 
 		<input
 			v-else
@@ -25,7 +25,7 @@
 			:required="required"
 			:placeholder="placeholder"
 			v-model="value"
-			@input="validate()" />
+			@input="input" />
 
 		<div class="error">
 			{{ errorMessage }}
@@ -51,29 +51,14 @@
 			placeholder: String,
 			label: String,
 			textarea: Boolean,
+			validate: Function,
 		},
 
 		methods: {
-			validate() {
-				if (this.type === "number" && this.value < 0) {
-					this.errorMessage = "Price should be a positive number.";
-
-					return;
-				}
-
-				if (
-					this.required &&
-					this.value === ""
-				) {
-					this.errorMessage =
-						"This field is required. Please, fill it.";
-
-					return;
-				}
-
-				this.errorMessage = "";
-				this.$emit("validate", this.value);
-			},
+			input() {
+				this.$emit("custom-input", this.value);
+				this.validate(this);
+			}
 		},
 	};
 </script>

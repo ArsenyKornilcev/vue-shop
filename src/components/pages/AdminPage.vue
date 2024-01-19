@@ -8,7 +8,8 @@
 			:submitItemBtn="true"
 			submitBtnText="Submit"
 			:inputs="inputs"
-			:textareas="textareas"></the-form>
+			:textareas="textareas"
+			:validate="validate"></the-form>
 	</div>
 </template>
 <script>
@@ -83,6 +84,24 @@
 				}
 
 				this.$store.dispatch("product/addProduct", newProduct);
+			},
+
+			validate(context) {
+				if (context.type === "number" && context.value < 0) {
+					context.errorMessage = "Price should be a positive number.";
+
+					return;
+				}
+
+				if (context.required && context.value === "") {
+					context.errorMessage =
+						"This field is required. Please, fill it.";
+
+					return;
+				}
+
+				context.errorMessage = "";
+				context.$emit("validate", context.value);
 			},
 		},
 	};

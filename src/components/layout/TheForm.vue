@@ -30,6 +30,7 @@
 			<div class="buttons">
 				<button
 					class="btn btn_submit"
+					type="button"
 					@click="submit"
 					v-if="!submitItemBtn">
 					{{ submitBtnText }}
@@ -37,6 +38,7 @@
 
 				<button
 					class="btn btn_submit"
+					type="button"
 					@click="submitItem"
 					v-else>
 					{{ submitBtnText }}

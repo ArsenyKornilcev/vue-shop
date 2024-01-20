@@ -1,21 +1,28 @@
 <template>
 	<div class="page">
-		<h2 class="text-center">This is an admin page</h2>
+		<h1>This is an admin page...</h1>
 
-		<the-form
-			@custom-submit="addProduct($event)"
-			resetBtnText="Reset"
-			:submitItemBtn="true"
-			submitBtnText="Submit"
-			:inputs="inputs"
-			:textareas="textareas"
-			:validate="validate"></the-form>
+		<the-section
+			section-title="Create new product"
+			:is-title-centered="true">
+			<the-form
+				@custom-submit="addProduct($event)"
+				resetBtnText="Reset"
+				:submitItemBtn="true"
+				submitBtnText="Submit"
+				:inputs="inputs"
+				:textareas="textareas"
+				:validate="validate"></the-form>
+		</the-section>
 
-		<the-section section-title="Products">
+		<the-section
+			section-title="Products"
+			:is-title-centered="true">
 			<product-list class="product-list"></product-list>
 		</the-section>
 	</div>
 </template>
+
 <script>
 	import TheForm from "../layout/TheForm.vue";
 	import ProductList from "@/components/lists/ProductList";
@@ -27,7 +34,7 @@
 		components: {
 			TheForm,
 			ProductList,
-			TheSection
+			TheSection,
 		},
 
 		data() {
@@ -67,8 +74,6 @@
 
 		methods: {
 			addProduct(product) {
-				console.log(product);
-
 				let allProducts = this.$store.getters["product/allProducts"];
 
 				let lastProductNumber = allProducts.at(-1).id.slice(1);
@@ -115,7 +120,5 @@
 		},
 	};
 </script>
-<style lang="sass" scoped>
-	.product-list
-		margin-top: 100px
-</style>
+
+<style lang="sass"></style>

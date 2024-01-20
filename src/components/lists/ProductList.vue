@@ -33,7 +33,7 @@
 	.product-list
 		display: flex
 		flex-flow: column wrap
-		gap: 30px
+		gap: 25px
 		width: 70%
 		margin: 0 auto
 </style>

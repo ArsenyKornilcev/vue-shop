@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<form @submit.prevent>
+		<form
+			@submit.prevent
+			ref="form">
 			<div class="inputs">
 				<input-field
 					v-for="input in formInputs"
@@ -11,7 +13,7 @@
 					:required="input.required"
 					:placeholder="input.placeholder"
 					:validate="validate"
-					@custom-input="input.value = $event"></input-field>
+					@custom-input="input.value = $event.value"></input-field>
 
 				<input-field
 					v-for="textarea in formTextareas"
@@ -22,7 +24,7 @@
 					:required="textarea.required"
 					:placeholder="textarea.placeholder"
 					:validate="validate"
-					@custom-input="textarea.value = $event"></input-field>
+					@custom-input="textarea.value = $event.value"></input-field>
 			</div>
 
 			<div class="buttons">
@@ -73,7 +75,7 @@
 			textareas: Array,
 			resetBtnText: String,
 			submitBtnText: String,
-			submitItemBtn: Boolean,  // if defined form will provide item on submit action
+			submitItemBtn: Boolean, // if defined form will provide item on submit action
 			validate: Function,
 		},
 
@@ -83,13 +85,26 @@
 
 				this.$emit("custom-submit", newProduct);
 
-				for (let obj of newProduct) {
-					obj.value = "";
-				}
+				this.clearInputFields();
 			},
 
 			submit() {
 				this.$emit("custom-submit");
+
+				this.clearInputFields();
+			},
+
+			clearInputFields() {
+				this.clearObjectValues(this.formInputs);
+				this.clearObjectValues(this.formTextareas);
+
+				this.$refs.form.reset();
+			},
+
+			clearObjectValues(array) {
+				for (let obj of array) {
+					obj.value = "";
+				}
 			},
 		},
 

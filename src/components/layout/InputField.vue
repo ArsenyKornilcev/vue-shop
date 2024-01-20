@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<label
-			:class="{ field_error: errorMessage !== '' }"
+			:class="{ field_error: isError }"
 			:for="id"
 			v-if="label">
 			{{ label }}
@@ -9,7 +9,7 @@
 
 		<textarea
 			v-if="textarea"
-			:class="{ field_error: errorMessage !== '' }"
+			:class="{ field_error: isError }"
 			:id="id"
 			:type="type"
 			:required="required"
@@ -19,7 +19,7 @@
 
 		<input
 			v-else
-			:class="{ field_error: errorMessage !== '' }"
+			:class="{ field_error: isError }"
 			:id="id"
 			:type="type"
 			:required="required"
@@ -56,9 +56,18 @@
 
 		methods: {
 			input() {
-				this.$emit("custom-input", this.value);
+				const response = {
+					error: this.isError,
+					value: this.value,
+				};
+				this.$emit("custom-input", response);
 				this.validate(this);
-			}
+			},
+		},
+		computed: {
+			isError() {
+				return this.errorMessage !== "";
+			},
 		},
 	};
 </script>

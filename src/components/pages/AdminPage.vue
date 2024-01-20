@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="page">
 		<h2 class="text-center">This is an admin page</h2>
 
 		<the-form
@@ -10,16 +10,24 @@
 			:inputs="inputs"
 			:textareas="textareas"
 			:validate="validate"></the-form>
+
+		<the-section section-title="Products">
+			<product-list class="product-list"></product-list>
+		</the-section>
 	</div>
 </template>
 <script>
 	import TheForm from "../layout/TheForm.vue";
+	import ProductList from "@/components/lists/ProductList";
+	import TheSection from "../layout/TheSection.vue";
 
 	export default {
 		name: "AdminPage",
 
 		components: {
 			TheForm,
+			ProductList,
+			TheSection
 		},
 
 		data() {
@@ -80,6 +88,7 @@
 						newProduct[obj.name] = parseFloat(obj.value);
 						continue;
 					}
+
 					newProduct[obj.name] = obj.value;
 				}
 
@@ -106,4 +115,7 @@
 		},
 	};
 </script>
-<style></style>
+<style lang="sass" scoped>
+	.product-list
+		margin-top: 100px
+</style>

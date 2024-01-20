@@ -13,7 +13,7 @@
 					:required="input.required"
 					:placeholder="input.placeholder"
 					:validate="validate"
-					@custom-input="input.value = $event.value"></input-field>
+					@custom-input="customInputProcess(input, $event)"></input-field>
 
 				<input-field
 					v-for="textarea in formTextareas"
@@ -24,13 +24,14 @@
 					:required="textarea.required"
 					:placeholder="textarea.placeholder"
 					:validate="validate"
-					@custom-input="textarea.value = $event.value"></input-field>
+					@custom-input="customInputProcess(textarea, $event)"></input-field>
 			</div>
 
 			<div class="buttons">
 				<button
 					class="btn btn_submit"
 					type="button"
+					:disabled="!canSend"
 					@click="submit"
 					v-if="!submitItemBtn">
 					{{ submitBtnText }}
@@ -39,6 +40,7 @@
 				<button
 					class="btn btn_submit"
 					type="button"
+					:disabled="!canSend"
 					@click="submitItem"
 					v-else>
 					{{ submitBtnText }}
@@ -47,6 +49,7 @@
 				<button
 					class="btn btn_reset"
 					type="reset"
+					@click="clearInputFields"
 					v-if="resetBtnText">
 					{{ resetBtnText }}
 				</button>
@@ -69,6 +72,7 @@
 			return {
 				formInputs: [],
 				formTextareas: [],
+				errors: 0,
 			};
 		},
 
@@ -96,9 +100,20 @@
 				this.clearInputFields();
 			},
 
+			customInputProcess(fieldForFillIn, event) {
+				fieldForFillIn.value = event.value;
+				console.log(event)
+
+				if (event.error) {
+					this.errors++;
+				}
+			},
+
 			clearInputFields() {
 				this.clearObjectValues(this.formInputs);
 				this.clearObjectValues(this.formTextareas);
+
+				this.errors = 0;
 
 				this.$refs.form.reset();
 			},
@@ -122,6 +137,12 @@
 				textarea["value"] = "";
 			}
 		},
+
+		computed: {
+			canSend() {
+				return this.errors === 0;
+			}
+		}
 	};
 </script>
 
@@ -142,6 +163,21 @@
 		border: none
 		cursor: pointer
 		color: #fff
+		position: relative
+		z-index: 1
+		overflow: hidden
+
+		&:disabled
+			&::after
+				position: absolute
+				display: block
+				content: ''
+				width: 100%
+				height: 100%
+				z-index: 2
+				background: rgba(0, 0, 0, .3)
+				top: 0
+				left: 0
 
 		&_submit
 			background: #288c48

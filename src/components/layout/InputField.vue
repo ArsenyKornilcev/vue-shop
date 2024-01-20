@@ -15,7 +15,7 @@
 			:required="required"
 			:placeholder="placeholder"
 			v-model="value"
-			@input="input" />
+			@keyup="input" />
 
 		<input
 			v-else
@@ -25,7 +25,7 @@
 			:required="required"
 			:placeholder="placeholder"
 			v-model="value"
-			@input="input" />
+			@keyup="input" />
 
 		<div class="error">
 			{{ errorMessage }}

@@ -64,6 +64,7 @@
 				this.validate(this);
 			},
 		},
+		
 		computed: {
 			isError() {
 				return this.errorMessage !== "";

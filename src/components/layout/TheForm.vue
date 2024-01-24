@@ -13,7 +13,9 @@
 					:required="input.required"
 					:placeholder="input.placeholder"
 					:validate="validate"
-					@custom-input="customInputProcess(input, $event)"></input-field>
+					@custom-input="
+						customInputProcess(input, $event)
+					"></input-field>
 
 				<input-field
 					v-for="textarea in formTextareas"
@@ -24,7 +26,9 @@
 					:required="textarea.required"
 					:placeholder="textarea.placeholder"
 					:validate="validate"
-					@custom-input="customInputProcess(textarea, $event)"></input-field>
+					@custom-input="
+						customInputProcess(textarea, $event)
+					"></input-field>
 			</div>
 
 			<div class="buttons">
@@ -89,6 +93,8 @@
 			submitItem() {
 				let newProduct = [...this.formInputs, ...this.formTextareas];
 
+				// this.trimInputFields();
+
 				this.$emit("custom-submit", newProduct);
 
 				this.clearInputFields();
@@ -102,11 +108,7 @@
 
 			customInputProcess(fieldForFillIn, event) {
 				fieldForFillIn.value = event.value;
-				console.log(event)
-
-				if (event.error) {
-					this.errors++;
-				}
+				console.log(event);
 			},
 
 			clearInputFields() {
@@ -116,6 +118,17 @@
 				this.errors = 0;
 
 				this.$refs.form.reset();
+			},
+
+			trimInputFields() {
+				this.trimObjectValues(this.formInputs);
+				this.trimObjectValues(this.formTextareas);
+			},
+
+			trimObjectValues(array) {
+				for (let obj of array) {
+					obj.value = obj.value.toString().trim();
+				}
 			},
 
 			clearObjectValues(array) {
@@ -141,8 +154,8 @@
 		computed: {
 			canSend() {
 				return this.errors === 0;
-			}
-		}
+			},
+		},
 	};
 </script>
 

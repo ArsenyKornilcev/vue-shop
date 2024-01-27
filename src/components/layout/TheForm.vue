@@ -76,7 +76,7 @@
 			return {
 				formInputs: [],
 				formTextareas: [],
-				errors: 0,
+				errors: [],
 			};
 		},
 
@@ -108,14 +108,16 @@
 
 			customInputProcess(fieldForFillIn, event) {
 				fieldForFillIn.value = event.value;
-				console.log(event);
+
+				const obj = this.errors.find((item) => item.id === event.id);
+				obj.haveError = event.error;
 			},
 
 			clearInputFields() {
 				this.clearObjectValues(this.formInputs);
 				this.clearObjectValues(this.formTextareas);
 
-				this.errors = 0;
+				this.haveErrors = false;
 
 				this.$refs.form.reset();
 			},
@@ -143,17 +145,31 @@
 			this.formTextareas = this.textareas.map((item) => ({ ...item }));
 
 			for (let input of this.formInputs) {
-				input["value"] = "";
+				input.value = "";
+
+				this.errors.push({
+					id: input.id,
+					haveError: false,
+				});
 			}
 
 			for (let textarea of this.formTextareas) {
-				textarea["value"] = "";
+				textarea.value = "";
+
+				this.errors.push({
+					id: textarea.id,
+					haveError: false,
+				});
 			}
 		},
 
 		computed: {
 			canSend() {
-				return this.errors === 0;
+				return (
+					this.errors.findIndex(
+						(inputField) => inputField.haveError
+					) === -1
+				);
 			},
 		},
 	};

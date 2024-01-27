@@ -59,7 +59,9 @@
 				const response = {
 					error: this.isError,
 					value: this.value,
+					id: this.id,
 				};
+				
 				this.$emit("custom-input", response);
 				this.validate(this);
 			},

@@ -115,7 +115,6 @@
 				}
 
 				context.errorMessage = "";
-				// context.$emit("validate", context.value);
 			},
 		},
 	};

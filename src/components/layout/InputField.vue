@@ -15,7 +15,8 @@
 			:required="required"
 			:placeholder="placeholder"
 			v-model="value"
-			@keyup="input" />
+			@keydown="input"
+			@keyup="inputValidate" />
 
 		<input
 			v-else
@@ -25,7 +26,8 @@
 			:required="required"
 			:placeholder="placeholder"
 			v-model="value"
-			@keyup="input" />
+			@keydown="input"
+			@keyup="inputValidate" />
 
 		<div class="error">
 			{{ errorMessage }}
@@ -56,17 +58,22 @@
 
 		methods: {
 			input() {
+				console.log("input");
 				const response = {
-					error: this.isError,
 					value: this.value,
-					id: this.id,
 				};
-				
+
 				this.$emit("custom-input", response);
-				this.validate(this);
+			},
+
+			inputValidate() {
+				console.log("validate");
+				const obj = this.validate(this);
+
+				this.$emit("validate", obj);
 			},
 		},
-		
+
 		computed: {
 			isError() {
 				return this.errorMessage !== "";

@@ -101,20 +101,39 @@
 			},
 
 			validate(context) {
+				let response = null;
+
 				if (context.type === "number" && context.value < 0) {
 					context.errorMessage = "Price should be a positive number.";
 
-					return;
+					response = {
+						id: context.id,
+						error: true,
+					}
+
+					return response;
 				}
 
 				if (context.required && context.value === "") {
 					context.errorMessage =
 						"This field is required. Please, fill it.";
 
-					return;
+					response = {
+						id: context.id,
+						error: true,
+					}
+
+					return response
 				}
 
 				context.errorMessage = "";
+
+				response = {
+					id: context.id,
+					error: false,
+				}
+
+				return response;
 			},
 		},
 	};

@@ -13,6 +13,7 @@
 					:required="input.required"
 					:placeholder="input.placeholder"
 					:validate="validate"
+					@validate="validateInput($event)"
 					@custom-input="
 						customInputProcess(input, $event)
 					"></input-field>
@@ -26,6 +27,7 @@
 					:required="textarea.required"
 					:placeholder="textarea.placeholder"
 					:validate="validate"
+					@validate="validateInput($event)"
 					@custom-input="
 						customInputProcess(textarea, $event)
 					"></input-field>
@@ -106,11 +108,14 @@
 				this.clearInputFields();
 			},
 
-			customInputProcess(fieldForFillIn, event) {
-				fieldForFillIn.value = event.value;
-
+			validateInput(event) {
+				console.log("Validate in form")
 				const obj = this.errors.find((item) => item.id === event.id);
 				obj.haveError = event.error;
+			},
+
+			customInputProcess(fieldForFillIn, event) {
+				fieldForFillIn.value = event.value;
 			},
 
 			clearInputFields() {

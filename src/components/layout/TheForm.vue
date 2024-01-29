@@ -97,6 +97,11 @@
 
 				// this.trimInputFields();
 
+				if (this.checkAllInputFields()) {
+					alert("Please, fill all required input fields.");
+					return;
+				}
+
 				this.$emit("custom-submit", newProduct);
 
 				this.clearInputFields();
@@ -109,9 +114,26 @@
 			},
 
 			validateInput(event) {
-				console.log("Validate in form")
 				const obj = this.errors.find((item) => item.id === event.id);
 				obj.haveError = event.error;
+			},
+
+			checkAllInputFields() {
+				return (
+					this.checkFieldsValuesOfArray(this.formInputs) &&
+					this.checkFieldsValuesOfArray(this.formTextareas)
+				);
+			},
+
+			checkFieldsValuesOfArray(array) {
+				const result = array.findIndex(
+					(InputField) => InputField.value === ""
+				);
+
+				if (result !== -1) {
+					return true;
+				}
+				return false;
 			},
 
 			customInputProcess(fieldForFillIn, event) {

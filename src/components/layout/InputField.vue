@@ -58,7 +58,6 @@
 
 		methods: {
 			input() {
-				console.log("input");
 				const response = {
 					value: this.value,
 				};
@@ -67,7 +66,6 @@
 			},
 
 			inputValidate() {
-				console.log("validate");
 				const obj = this.validate(this);
 
 				this.$emit("validate", obj);

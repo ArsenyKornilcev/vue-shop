@@ -19,6 +19,12 @@
 						:value="input.value"
 						:placeholder="input.placeholder"
 						@input="inputProcess(input, $event)" />
+
+					<div
+						v-if="input.errorMsg"
+						class="error">
+						{{ input.errorMsg }}
+					</div>
 				</div>
 
 				<div
@@ -30,12 +36,19 @@
 						v-if="textarea.label"
 						>{{ textarea.label }}</label
 					>
+
 					<textarea
 						:id="textarea.id"
 						:required="textarea.required"
 						:value="textarea.value"
 						:placeholder="textarea.placeholder"
 						@input="inputProcess(textarea, $event)"></textarea>
+
+					<div
+						v-if="textarea.errorMsg"
+						class="error">
+						{{ textarea.errorMsg }}
+					</div>
 				</div>
 			</div>
 
@@ -100,11 +113,13 @@
 			this.formTextareas = this.textareas.map((item) => ({ ...item }));
 
 			for (let input of this.formInputs) {
-				input["value"] = "";
+				input.value = "";
+				input.errorMsg = "";
 			}
 
 			for (let textarea of this.formTextareas) {
-				textarea["value"] = "";
+				textarea.value = "";
+				textarea.errorMsg = "";
 			}
 		},
 	};
@@ -115,6 +130,10 @@
 		display: flex
 		flex-flow: column wrap
 		gap: 5px
+
+	.error
+		color: #cf2e2e
+		border-color: #cf2e2e
 
 	.buttons
 		display: flex

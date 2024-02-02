@@ -18,7 +18,7 @@
 						:required="input.required"
 						:value="input.value"
 						:placeholder="input.placeholder"
-						@input="input.value = $event.target.value" />
+						@input="inputProcess(input, $event)" />
 				</div>
 
 				<div
@@ -35,24 +35,14 @@
 						:required="textarea.required"
 						:value="textarea.value"
 						:placeholder="textarea.placeholder"
-						@input="
-							textarea.value = $event.target.value
-						"></textarea>
+						@input="inputProcess(textarea, $event)"></textarea>
 				</div>
 			</div>
 
 			<div class="buttons">
 				<button
 					class="btn btn_submit"
-					@click="submit"
-					v-if="!submitItemBtn">
-					{{ submitBtnText }}
-				</button>
-
-				<button
-					class="btn btn_submit"
-					@click="submitItem"
-					v-else>
+					@click="submit">
 					{{ submitBtnText }}
 				</button>
 
@@ -83,43 +73,23 @@
 			textareas: Array,
 			resetBtnText: String,
 			submitBtnText: String,
-			submitItemBtn: Boolean, // if defined form will provide item on submit action
 		},
 
 		methods: {
-			submitItem() {
-				let newProduct = [
-					...this.formInputs,
-					...this.formTextareas,
-				];
+			submit() {
+				let inputFields = [...this.formInputs, ...this.formTextareas];
 
 				// if (this.validate(newProduct)) {
-					this.$emit("custom-submit", newProduct);
+				this.$emit("custom-submit", inputFields);
 				// }
 
-				for (let obj of newProduct) {
+				for (let obj of inputFields) {
 					obj.value = "";
 				}
 			},
 
-			submit() {
-				this.$emit("custom-submit");
-			},
-
-			validate(item = null) {
-				if (item) {
-					for (let prop in item) {
-						if (
-							prop.type === "text" &&
-							prop.required === true &&
-							prop.value === ""
-						) {
-							return true;
-						}
-					}
-				} else {
-					return false;
-				}
+			inputProcess(targetToFill, event) {
+				targetToFill.value = event.target.value;
 			},
 		},
 

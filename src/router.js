@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import NotFound from "@/components/NotFound";
+import NotFound from "@/components/pages/NotFound";
 import CartPage from "@/components/pages/CartPage";
 import AdminPage from "@/components/pages/AdminPage";
 import ProductsPage from "@/components/pages/ProductsPage";

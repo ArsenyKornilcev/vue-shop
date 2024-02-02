@@ -68,6 +68,8 @@
 			};
 		},
 
+		emits: ["custom-submit"],
+
 		props: {
 			inputs: Array,
 			textareas: Array,

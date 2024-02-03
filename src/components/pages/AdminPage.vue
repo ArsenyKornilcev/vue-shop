@@ -20,7 +20,7 @@
 			title="All products"
 			:centeredTitle="true">
 			<div>
-				<product-list></product-list>
+				<product-list :edit="true"></product-list>
 			</div>
 		</the-section>
 	</div>

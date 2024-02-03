@@ -1,5 +1,5 @@
 <template>
-	<the-section>
+	<the-card>
 		<div class="card">
 			<img
 				:src="imgSrc"
@@ -19,15 +19,15 @@
 				<button @click="addItem">Add to Cart</button>
 			</div>
 		</div>
-	</the-section>
+	</the-card>
 </template>
 <script>
-	import TheSection from "../layout/TheCard.vue";
+	import TheCard from "../layout/TheCard.vue";
 
 	export default {
 		name: "ProductCard",
 		components: {
-			TheSection,
+			TheCard,
 		},
 		props: {
 			imgSrc: String,

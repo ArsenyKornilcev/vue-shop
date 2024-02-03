@@ -107,7 +107,7 @@
 			inputProcess(targetToFill, event) {
 				targetToFill.value = event.target.value;
 
-				this.validate(this);
+				this.validate(event.target.value);
 			},
 		},
 

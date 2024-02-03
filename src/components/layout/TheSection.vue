@@ -22,7 +22,7 @@ export default {
         padding: 50px 0
 
         &__title
-            font-size: 20px
+            font-size: 24px
             font-weight: bold
             margin-bottom: 20px
 

@@ -1,38 +1,22 @@
 <template>
-    <div class="product-list">
-        <product-card
-		v-for="product in products"
-		:key="product.id"
-		:item-id="product.id"
-		:title="product.title"
-        :description="product.description"
-        :price="product.price"
-        :img-src="product.image"></product-card>
-    </div>
+	<div>
+		<the-section title="Products" :centeredTitle=true>
+			<product-list></product-list>
+		</the-section>
+	</div>
 </template>
 
 <script>
-	import ProductCard from "../items/ProductCard.vue";
+	import ProductList from "@/components/lists/ProductList";
+	import TheSection from "../layout/TheSection.vue";
 
 	export default {
 		name: "ProductsPage",
 		components: {
-			ProductCard,
-		},
-		computed: {
-			products() {
-				return this.$store.getters["product/allProducts"];
-			},
+			ProductList,
+			TheSection,
 		},
 	};
 </script>
 
-<style scoped>
-    .product-list {
-        display: flex;
-        flex-flow: column wrap;
-        gap: 30px;
-        width: 70%;
-        margin: 0 auto;
-    }
-</style>
+<style></style>

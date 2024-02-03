@@ -76,8 +76,6 @@
 
 		methods: {
 			addProduct(product) {
-				console.log(product);
-
 				let allProducts = this.$store.getters["product/allProducts"];
 
 				let lastProductNumber = allProducts.at(-1).id.slice(1);
@@ -97,13 +95,28 @@
 						newProduct[obj.name] = parseFloat(obj.value);
 						continue;
 					}
+
 					newProduct[obj.name] = obj.value;
 				}
 
 				this.$store.dispatch("product/addProduct", newProduct);
 			},
 
-			validateForm() {},
+			validateForm(inputField) {
+				if (inputField.required && inputField.value === "") {
+					inputField.errorMsg = "Please, fill this input field.";
+
+					return;
+				}
+
+				if (inputField.type === "number" && inputField.value < 0) {
+					inputField.errorMsg = "Price should be a positive number.";
+
+					return;
+				}
+
+				inputField.errorMsg = "";
+			},
 		},
 	};
 </script>

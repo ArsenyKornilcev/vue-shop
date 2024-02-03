@@ -102,13 +102,14 @@
 
 				for (let obj of inputFields) {
 					obj.value = "";
+					obj.errorMsg = "";
 				}
 			},
 
 			inputProcess(targetToFill, event) {
 				targetToFill.value = event.target.value;
 
-				this.validate(event.target.value);
+				this.validate(targetToFill);
 			},
 		},
 

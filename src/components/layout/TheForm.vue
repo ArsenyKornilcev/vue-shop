@@ -55,6 +55,7 @@
 			<div class="buttons">
 				<button
 					class="btn btn_submit"
+					type="button"
 					@click="submit">
 					{{ submitBtnText }}
 				</button>

@@ -2,7 +2,9 @@
 	<div>
 		<h2>This is an admin page</h2>
 
-		<the-section title="Add new product" :centeredTitle=true >
+		<the-section
+			title="Add new product"
+			:centeredTitle="true">
 			<div>
 				<the-form
 					@custom-submit="addProduct($event)"
@@ -14,9 +16,11 @@
 			</div>
 		</the-section>
 
-		<the-section title="All products" :centeredTitle=true>
+		<the-section
+			title="All products"
+			:centeredTitle="true">
 			<div>
-				
+				<product-list></product-list>
 			</div>
 		</the-section>
 	</div>
@@ -24,6 +28,7 @@
 <script>
 	import TheForm from "../layout/TheForm.vue";
 	import TheSection from "@/components/layout/TheSection";
+	import ProductList from "@/components/lists/ProductList";
 
 	export default {
 		name: "AdminPage",
@@ -31,6 +36,7 @@
 		components: {
 			TheForm,
 			TheSection,
+			ProductList,
 		},
 
 		data() {

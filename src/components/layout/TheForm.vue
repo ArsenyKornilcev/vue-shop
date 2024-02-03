@@ -88,6 +88,7 @@
 			textareas: Array,
 			resetBtnText: String,
 			submitBtnText: String,
+			validate: Function,
 		},
 
 		methods: {
@@ -105,6 +106,8 @@
 
 			inputProcess(targetToFill, event) {
 				targetToFill.value = event.target.value;
+
+				this.validate(this);
 			},
 		},
 

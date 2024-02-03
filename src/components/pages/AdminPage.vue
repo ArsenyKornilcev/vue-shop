@@ -1,24 +1,36 @@
 <template>
 	<div>
-		<h2 class="text-center">This is an admin page</h2>
+		<h2>This is an admin page</h2>
 
-		<the-form
-			@custom-submit="addProduct($event)"
-			resetBtnText="Reset"
-			:submitItemBtn="true"
-			submitBtnText="Submit"
-			:inputs="inputs"
-			:textareas="textareas"></the-form>
+		<the-section title="Add new product" :centeredTitle=true >
+			<div>
+				<the-form
+					@custom-submit="addProduct($event)"
+					:validate="validateForm"
+					resetBtnText="Reset"
+					submitBtnText="Submit"
+					:inputs="inputs"
+					:textareas="textareas"></the-form>
+			</div>
+		</the-section>
+
+		<the-section title="All products" :centeredTitle=true>
+			<div>
+				
+			</div>
+		</the-section>
 	</div>
 </template>
 <script>
 	import TheForm from "../layout/TheForm.vue";
+	import TheSection from "@/components/layout/TheSection";
 
 	export default {
 		name: "AdminPage",
 
 		components: {
 			TheForm,
+			TheSection,
 		},
 
 		data() {
@@ -84,6 +96,8 @@
 
 				this.$store.dispatch("product/addProduct", newProduct);
 			},
+
+			validateForm() {},
 		},
 	};
 </script>

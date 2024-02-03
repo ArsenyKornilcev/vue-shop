@@ -6,17 +6,38 @@
 				alt="" />
 
 			<div class="card__text">
-				<div class="card__title">
-					{{ title }}
+				<div class="card__info" v-if="!editMode">
+					<div class="card__title">
+						{{ title }}
+					</div>
+
+					<span>${{ price }}</span>
+
+					<div class="card__description">
+						{{ description }}
+					</div>
 				</div>
 
-				<span>${{ price }}</span>
+				<div class="card__info" v-else>
+					<input type="text" :value="title"/>
 
-				<div class="card__description">
-					{{ description }}
+					<input type="number" :value="price"/>
+
+					<textarea :value="description"> </textarea>
 				</div>
 
-				<button @click="addItem">Add to Cart</button>
+				<button
+					@click="addProduct"
+					v-if="!edit">
+					Add to Cart
+				</button>
+
+				<div
+					class="btns"
+					v-else>
+					<button @click="editProduct">Edit</button>
+					<button @click="deleteProduct">Delete</button>
+				</div>
 			</div>
 		</div>
 	</the-card>
@@ -26,85 +47,123 @@
 
 	export default {
 		name: "ProductCard",
+
+		data() {
+			return {
+				editMode: false,
+			};
+		},
+
 		components: {
 			TheCard,
 		},
+
 		props: {
 			imgSrc: String,
 			title: String,
 			description: String,
 			price: Number,
 			itemId: String,
+			edit: Boolean,
 		},
+
 		methods: {
-			addItem() {
+			addProduct() {
 				const payload = { id: this.itemId };
 				this.$store.dispatch("cart/addItem", payload);
+			},
+
+			editProduct() {
+				this.editMode = !this.editMode;
+				console.log(this.editMode)
 			},
 		},
 	};
 </script>
-<style scoped>
-	.card {
-		display: grid;
-		grid-template-columns: min-content 1fr;
-		gap: 20px;
-	}
-	.card__text {
-		display: flex;
-		flex-flow: column wrap;
-		gap: 10px;
-	}
-	.card__title {
-		font-size: 18px;
-		font-weight: bold;
-	}
-	span {
-		border-radius: 15px;
-		background: #f3dd32;
-		padding: 4px 16px;
-		font-weight: bold;
-	}
-	.card__description {
-		overflow: hidden;
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		line-clamp: 3;
-		-webkit-box-orient: vertical;
-	}
+<style lang="sass" scoped>
+	.card
+		display: grid
+		grid-template-columns: min-content 1fr
+		gap: 20px
 
-	img {
-		display: block;
-		max-width: 180px;
-		width: 180px;
-		height: 100%;
-		aspect-ratio: 1;
-		object-fit: cover;
-		border-radius: 15px;
-	}
+	.card__text
+		display: flex
+		flex-flow: column wrap
+		justify-content: space-between
+		gap: 10px
+
+	.card__info
+		display: flex
+		flex-flow: column wrap
+		gap: 10px
+
+	.card__title
+		font-size: 18px
+		font-weight: bold
+
+	span
+		border-radius: 15px
+		background: #f3dd32
+		padding: 4px 16px
+		font-weight: bold
+
+	.card__description
+		overflow: hidden
+		display: -webkit-box
+		-webkit-line-clamp: 3
+		line-clamp: 3
+		-webkit-box-orient: vertical
+
+	img
+		display: block
+		max-width: 180px
+		width: 180px
+		height: 100%
+		aspect-ratio: 1
+		object-fit: cover
+		border-radius: 15px
+
+	.btns
+		display: flex
+		gap: 10px
+
 	button,
-	span {
-		width: fit-content;
-	}
-	button {
-		margin-top: auto;
-		padding: 8px 18px;
+	span
+		width: fit-content
 
-		border: none;
-		border-radius: 15px;
+	button
+		margin-top: auto
+		padding: 8px 18px
 
-		background: #591e98;
-		color: #f3f3f3;
-		font-weight: bold;
-		transition: 0.3s ease;
-		cursor: pointer;
-	}
-	button:hover {
-		background: #6c25b7;
-		color: #fff;
-	}
-	button:active {
-		background: #4c1a83;
-		color: #dddddd;
-	}
+		border: none
+		border-radius: 15px
+
+		background: #591e98
+		color: #f3f3f3
+		font-weight: bold
+		transition: 0.3s ease
+		cursor: pointer
+
+	button:hover
+		background: #6c25b7
+		color: #fff
+
+	button:active
+		background: #4c1a83
+		color: #dddddd
+
+	input, textarea
+		padding: 8px 10px
+		font-size: 15px
+		font-weight: bold
+		border-radius: 5px
+		outline: none
+		border: 1px solid #dadada
+		transition: .3s ease
+
+	textarea
+		max-width: 100%
+		resize: vertical
+		min-height: 100px
+		max-height: 200px
 </style>

@@ -223,7 +223,6 @@
 		min-height: 100px
 		max-height: 200px
 
-
 	form
 		display: flex
 		flex-flow: column wrap

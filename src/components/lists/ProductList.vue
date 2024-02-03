@@ -2,6 +2,7 @@
 	<div class="product-list">
 		<product-card
 			v-for="product in products"
+			:edit="edit"
 			:key="product.id"
 			:item-id="product.id"
 			:title="product.title"
@@ -16,9 +17,15 @@
 
 	export default {
 		name: "ProductList",
+
 		components: {
 			ProductCard,
 		},
+
+		props: {
+			edit: Boolean,
+		},
+		
 		computed: {
 			products() {
 				return this.$store.getters["product/allProducts"];

@@ -67,6 +67,7 @@
 				<button
 					class="btn btn_reset"
 					type="reset"
+					@click="reset"
 					v-if="resetBtnText">
 					{{ resetBtnText }}
 				</button>
@@ -98,16 +99,40 @@
 
 		methods: {
 			submit() {
-				let inputFields = [...this.formInputs, ...this.formTextareas];
+				if (!this.validateAllInputFields()) {
+					alert("Fill the input fields!");
+					return;
+				}
 
-				// if (this.validate(newProduct)) {
-				this.$emit("custom-submit", inputFields);
-				// }
+				this.$emit("custom-submit", [
+					...this.formInputs,
+					...this.formTextareas,
+				]);
+				this.reset();
+			},
 
-				for (let obj of inputFields) {
+			reset() {
+				for (let obj of [...this.formInputs, ...this.formTextareas]) {
 					obj.value = "";
 					obj.errorMsg = "";
 				}
+			},
+
+			validateAllInputFields() {
+				return (
+					!this.voidValueInArrayCheck(this.formInputs) &&
+					!this.voidValueInArrayCheck(this.formTextareas)
+				);
+			},
+
+			voidValueInArrayCheck(array) {
+				for (let inputField of array) {
+					if (inputField.required && inputField.value === "") {
+						return true;
+					}
+				}
+
+				return false;
 			},
 
 			inputProcess(targetToFill, event) {

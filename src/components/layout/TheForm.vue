@@ -7,12 +7,14 @@
 					v-for="input in formInputs"
 					:key="input.id">
 					<label
+						:class="{ error: input.errorMsg }"
 						:for="input.id"
 						v-if="input.label"
 						>{{ input.label }}</label
 					>
 
 					<input
+						:class="{ error: input.errorMsg }"
 						:id="input.id"
 						:type="input.type"
 						:required="input.required"
@@ -32,12 +34,14 @@
 					v-for="textarea in formTextareas"
 					:key="textarea.id">
 					<label
+						:class="{ error: textarea.errorMsg }"
 						:for="textarea.id"
 						v-if="textarea.label"
 						>{{ textarea.label }}</label
 					>
 
 					<textarea
+						:class="{ error: textarea.errorMsg }"
 						:id="textarea.id"
 						:required="textarea.required"
 						:value="textarea.value"
@@ -186,6 +190,7 @@
 		border-radius: 5px
 		outline: none
 		border: 1px solid #dadada
+		transition: .3s ease
 
 	textarea
 		max-width: 100%

@@ -25,13 +25,17 @@
 					v-else>
 					<input
 						type="text"
-						:value="title" />
+						v-model="itemTitle" />
 
 					<input
 						type="number"
-						:value="price" />
+						v-model="itemPrice" />
 
-					<textarea :value="description"> </textarea>
+					<input
+						type="text"
+						v-model="itemImg" />
+
+					<textarea v-model="itemDescription"> </textarea>
 				</div>
 
 				<button
@@ -69,21 +73,45 @@
 			edit: Boolean,
 		},
 
+		mounted() {
+			this.itemTitle = this.title;
+			this.itemDescription = this.description;
+			this.itemPrice = this.price;
+			this.itemImg = this.imgSrc;
+		},
+
+		data() {
+			return {
+				itemTitle: "",
+				itemDescription: "",
+				itemPrice: 0,
+				itemImg: "",
+			};
+		},
+
 		methods: {
 			addProduct() {
 				const payload = { id: this.itemId };
-				
+
 				this.$store.dispatch("cart/addItem", payload);
 			},
 
 			editProduct() {
-				console.log("edit");
+				const payload = {
+					id: this.itemId,
+					image: this.itemImg,
+					title: this.itemTitle,
+					description: this.itemDescription,
+					price: this.itemPrice,
+				};
+
+				this.$store.dispatch("product/editProduct", payload);
 			},
 
 			deleteProduct() {
 				const payload = {
-					id: this.itemId
-				}
+					id: this.itemId,
+				};
 
 				this.$store.dispatch("product/deleteProduct", payload);
 			},

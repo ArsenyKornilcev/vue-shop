@@ -64,6 +64,7 @@
 						name: "image",
 					},
 				],
+
 				textareas: [
 					{
 						id: "t1",
@@ -77,7 +78,6 @@
 		methods: {
 			addProduct(product) {
 				let allProducts = this.$store.getters["product/allProducts"];
-
 				let lastProductNumber = 0;
 
 				if (allProducts.length !== 0) {

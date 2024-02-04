@@ -44,6 +44,16 @@ export default {
 			state.products.push(newProduct);
 		},
 
+		editProduct(state, payload) {
+			let productToEdit = state.products.find(
+				(item) => item.id === payload.id
+			);
+
+			for (let prop in productToEdit) {
+				productToEdit[prop] = payload[prop]
+			}
+		},
+
 		deleteProduct(state, payload) {
 			const productToRemoveIndex = state.products.findIndex(
 				(item) => item.id === payload.id
@@ -56,6 +66,10 @@ export default {
 	actions: {
 		addProduct(context, payload) {
 			context.commit("addProduct", payload);
+		},
+
+		editProduct(context, payload) {
+			context.commit("editProduct", payload);
 		},
 
 		deleteProduct(context, payload) {

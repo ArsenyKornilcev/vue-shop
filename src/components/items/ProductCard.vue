@@ -6,7 +6,9 @@
 				alt="" />
 
 			<div class="card__text">
-				<div class="card__info" v-if="!editMode">
+				<div
+					class="card__info"
+					v-if="!edit">
 					<div class="card__title">
 						{{ title }}
 					</div>
@@ -18,10 +20,16 @@
 					</div>
 				</div>
 
-				<div class="card__info" v-else>
-					<input type="text" :value="title"/>
+				<div
+					class="card__info"
+					v-else>
+					<input
+						type="text"
+						:value="title" />
 
-					<input type="number" :value="price"/>
+					<input
+						type="number"
+						:value="price" />
 
 					<textarea :value="description"> </textarea>
 				</div>
@@ -48,34 +56,36 @@
 	export default {
 		name: "ProductCard",
 
-		data() {
-			return {
-				editMode: false,
-			};
-		},
-
 		components: {
 			TheCard,
 		},
 
 		props: {
+			itemId: String,
 			imgSrc: String,
 			title: String,
 			description: String,
 			price: Number,
-			itemId: String,
 			edit: Boolean,
 		},
 
 		methods: {
 			addProduct() {
 				const payload = { id: this.itemId };
+				
 				this.$store.dispatch("cart/addItem", payload);
 			},
 
 			editProduct() {
-				this.editMode = !this.editMode;
-				console.log(this.editMode)
+				console.log("edit");
+			},
+
+			deleteProduct() {
+				const payload = {
+					id: this.itemId
+				}
+
+				this.$store.dispatch("product/deleteProduct", payload);
 			},
 		},
 	};
@@ -118,7 +128,6 @@
 		display: block
 		max-width: 180px
 		width: 180px
-		height: 100%
 		aspect-ratio: 1
 		object-fit: cover
 		border-radius: 15px

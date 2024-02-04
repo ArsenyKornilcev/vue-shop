@@ -35,6 +35,7 @@ export default {
 			state.total += newItem.price;
 			state.quantity++;
 		},
+		
 		removeItem(state, payload) {
 			const productToRemoveIndex = state.cartItems.findIndex(
 				(item) => item.id === payload.id
@@ -58,6 +59,7 @@ export default {
 			);
 			context.commit("addItem", productForCart);
 		},
+
 		removeItem(context, payload) {
 			context.commit("removeItem", payload);
 		},
@@ -67,9 +69,11 @@ export default {
 		cartItems(state) {
 			return state.cartItems;
 		},
+
 		itemsQuantity(state) {
 			return state.quantity;
 		},
+
 		getTotalAmount(state) {
 			return state.total;
 		},

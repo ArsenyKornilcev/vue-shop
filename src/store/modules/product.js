@@ -44,27 +44,22 @@ export default {
 			state.products.push(newProduct);
 		},
 
-		// removeItem(state, payload) {
-		// 	const productToRemoveIndex = state.cartItems.findIndex(
-		// 		(item) => item.id === payload.id
-		// 	);
-		// 	const productToRemove = state.cartItems[productToRemoveIndex];
+		deleteProduct(state, payload) {
+			const productToRemoveIndex = state.products.findIndex(
+				(item) => item.id === payload.id
+			);
 
-		// 	if (productToRemove.quantity == 1) {
-		// 		state.cartItems.splice(productToRemoveIndex, 1);
-		// 	}
-		// 	productToRemove.quantity--;
-		// 	state.quantity--;
-		// 	state.total -= productToRemove.price;
-		// },
+			state.products.splice(productToRemoveIndex, 1);
+		},
 	},
 
 	actions: {
 		addProduct(context, payload) {
 			context.commit("addProduct", payload);
 		},
-		removeProduct(context, payload) {
-			context.commit("removeProduct", payload);
+
+		deleteProduct(context, payload) {
+			context.commit("deleteProduct", payload);
 		},
 	},
 

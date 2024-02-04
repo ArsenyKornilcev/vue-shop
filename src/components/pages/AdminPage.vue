@@ -78,7 +78,11 @@
 			addProduct(product) {
 				let allProducts = this.$store.getters["product/allProducts"];
 
-				let lastProductNumber = allProducts.at(-1).id.slice(1);
+				let lastProductNumber = 0;
+
+				if (allProducts.length !== 0) {
+					lastProductNumber = allProducts.at(-1).id.slice(1);
+				}
 
 				let id = "p" + (parseInt(lastProductNumber) + 1);
 

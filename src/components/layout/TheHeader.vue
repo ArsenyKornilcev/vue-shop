@@ -26,8 +26,10 @@
 		</div>
 
 		<div class="auth">
-			<button @click="authorization">
-				{{ authBtnText }}
+			<button>
+				<router-link :to="{ name: 'registration' }">
+					{{ authBtnText }}
+				</router-link>
 			</button>
 		</div>
 	</header>
@@ -35,30 +37,32 @@
 <script>
 	export default {
 		name: "TheHeader",
+
 		props: ["links", "brandName"],
+
 		emits: ["auth"],
-		methods: {
-			authorization() {
-				const authBool = !this.isAuth;
-				this.$emit("auth", authBool);
-			},
-		},
+
+		methods: {},
+
 		computed: {
 			isAuth() {
 				return this.$store.state.authorization.isLoggedIn;
 			},
+
 			availableLinks() {
 				return this.links.filter(
 					(link) => !link.auth || (link.auth && this.isAuth)
 				);
 			},
+
 			authBtnText() {
 				if (!this.isAuth) {
 					return "Sign In";
-				} else {
-					return "Sign Out";
 				}
+
+				return "Sign Out";
 			},
+
 			itemsQuantity() {
 				return this.$store.getters["cart/itemsQuantity"];
 			},

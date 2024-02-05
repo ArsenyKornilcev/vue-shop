@@ -143,17 +143,19 @@
 		},
 
 		mounted() {
-			this.formInputs = this.inputs.map((item) => ({ ...item }));
-			this.formTextareas = this.textareas.map((item) => ({ ...item }));
-
-			for (let input of this.formInputs) {
-				input.value = "";
-				input.errorMsg = "";
+			if (this.inputs) {
+				this.formInputs = this.inputs.map((item) => ({ ...item }));
 			}
 
-			for (let textarea of this.formTextareas) {
-				textarea.value = "";
-				textarea.errorMsg = "";
+			if (this.textareas) {
+				this.formTextareas = this.textareas.map((item) => ({
+					...item,
+				}));
+			}
+
+			for (let field of [...this.formInputs, ...this.formTextareas]) {
+				field.value = "";
+				field.errorMsg = "";
 			}
 		},
 	};

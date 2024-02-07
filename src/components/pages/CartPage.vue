@@ -53,11 +53,12 @@
 		background: #222;
 	}
 	.cart-items {
-		margin-top: 20px;
+		margin-top: 40px;
 		padding: 0 1vw;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 5vw;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		gap: 40px;
 	}
 
 	p {

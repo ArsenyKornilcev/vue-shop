@@ -1,5 +1,5 @@
 <template>
-	<the-card>
+	<the-card class="cart-item">
 		<div class="img">
 			<img :src="imgSrc" />
 			<h2>{{ title }}</h2>
@@ -73,6 +73,9 @@
 </script>
 
 <style scoped>
+	.cart-item {
+		width: 300px;
+	}
 	.img {
 		display: grid;
 		grid-template-columns: 100px 1fr;

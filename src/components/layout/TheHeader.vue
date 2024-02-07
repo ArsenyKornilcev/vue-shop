@@ -26,11 +26,11 @@
 		</div>
 
 		<div class="auth">
-			<button>
+			<the-button positive>
 				<router-link :to="{ name: 'registration' }">
 					{{ authBtnText }}
 				</router-link>
-			</button>
+			</the-button>
 		</div>
 	</header>
 </template>
@@ -41,8 +41,6 @@
 		props: ["links", "brandName"],
 
 		emits: ["auth"],
-
-		methods: {},
 
 		computed: {
 			isAuth() {
@@ -134,27 +132,6 @@
 	.link {
 		display: flex;
 		gap: 10px;
-	}
-
-	button {
-		border-radius: 5px;
-		padding: 8px 14px;
-		font-weight: bold;
-		font-size: 16px;
-		color: #f4f4f4;
-		background: #1cad88;
-		transition: all 0.3s ease;
-		border: none;
-		cursor: pointer;
-		min-width: 95px;
-	}
-	button:hover {
-		background: #1eb892;
-		color: #fff;
-	}
-	button:active {
-		color: #ebebeb;
-		background: #178f71;
 	}
 
 	.fade-enter-active,

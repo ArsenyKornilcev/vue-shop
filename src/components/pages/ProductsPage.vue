@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<the-section title="Products" :centeredTitle=true>
+		<the-section title="Products" centered-title>
 			<product-list></product-list>
 		</the-section>
 	</div>

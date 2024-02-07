@@ -123,6 +123,12 @@
 	a:hover {
 		text-shadow: 0 0 1px #222;
 	}
+
+	.brand-name {
+		display: flex;
+		align-items: center;
+	}
+
 	.brand-name a.router-link-active {
 		text-shadow: none;
 	}

@@ -8,7 +8,6 @@
 			rounded: rounded,
 			fluid: fluid,
 		}">
-		{{ text }}
 		<slot></slot>
 	</button>
 </template>
@@ -37,7 +36,13 @@
 		transition: 0.3s ease
 		border: none
 		cursor: pointer
-		min-width: 95px
+		outline: none
+
+		&.fluid
+			width: 100%
+
+		&.rounded
+			border-radius: 15px
 
 		&.positive
 			color: #f4f4f4
@@ -50,4 +55,16 @@
 			&:active
 				color: #ebebeb
 				background: #178f71
+
+		&.negative
+			background: #3b3b3b
+			color: #f4f4f4
+
+			&:hover
+				color: #fff
+				background: #454545
+
+			&:active
+				color: #f0f0f0
+				background: #404040
 </style>

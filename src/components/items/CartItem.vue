@@ -19,16 +19,20 @@
 		</p>
 
 		<div class="btns">
-			<button
-				class="btn_add"
+			<the-button
+				positive
+				rounded
+				fluid
 				@click="add">
 				Add
-			</button>
-			<button
-				class="btn_remove"
+			</the-button>
+			<the-button
+				negative
+				rounded
+				fluid
 				@click="remove">
 				Remove
-			</button>
+			</the-button>
 		</div>
 	</the-card>
 </template>
@@ -104,38 +108,5 @@
 		display: flex;
 		gap: 10px;
 		justify-content: flex-end;
-	}
-	.btns button {
-		padding: 4px 16px;
-		border: none;
-		border-radius: 15px;
-		font-weight: bold;
-		color: #e8e8e8;
-		cursor: pointer;
-		transition: 0.3s ease;
-	}
-	.btns button:hover {
-		color: #fff;
-	}
-	.btns button:active {
-		color: #e8e8e8;
-	}
-	.btn_add {
-		background: #288c48;
-	}
-	.btn_add:hover {
-		background: #2c9a4f;
-	}
-	.btn_add:active {
-		background: #288c48;
-	}
-	.btn_remove {
-		background: #882727;
-	}
-	.btn_remove:hover {
-		background: #9a2c2c;
-	}
-	.btn_remove:active {
-		background: #882727;
 	}
 </style>

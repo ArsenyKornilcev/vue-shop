@@ -57,9 +57,20 @@
 			</div>
 
 			<div class="buttons">
-				<the-button positive type="button" :text="submitBtnText" @click="submit"></the-button>
+				<the-button
+					positive
+					type="button"
+					@click="submit">
+					{{ submitBtnText }}
+				</the-button>
 
-				<the-button v-if="resetBtnText" negative type="reset" :text="resetBtnText" @click="reset"></the-button>
+				<the-button
+					v-if="resetBtnText"
+					negative
+					type="reset"
+					@click="reset">
+					{{ resetBtnText }}
+				</the-button>
 			</div>
 		</form>
 	</div>

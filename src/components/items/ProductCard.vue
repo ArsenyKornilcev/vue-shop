@@ -38,17 +38,29 @@
 					<textarea v-model="itemDescription"> </textarea>
 				</div>
 
-				<button
+				<the-button
+					positive-secondary
+					rounded
 					@click="addProduct"
 					v-if="!edit">
 					Add to Cart
-				</button>
+				</the-button>
 
 				<div
 					class="btns"
 					v-else>
-					<button @click="editProduct">Edit</button>
-					<button @click="deleteProduct">Delete</button>
+					<the-button
+						rounded
+						positive
+						@click="editProduct"
+						>Edit</the-button
+					>
+					<the-button
+						rounded
+						negative
+						@click="deleteProduct"
+						>Delete</the-button
+					>
 				</div>
 			</div>
 		</div>
@@ -164,30 +176,8 @@
 		display: flex
 		gap: 10px
 
-	button,
 	span
 		width: fit-content
-
-	button
-		margin-top: auto
-		padding: 8px 18px
-
-		border: none
-		border-radius: 15px
-
-		background: #591e98
-		color: #f3f3f3
-		font-weight: bold
-		transition: 0.3s ease
-		cursor: pointer
-
-	button:hover
-		background: #6c25b7
-		color: #fff
-
-	button:active
-		background: #4c1a83
-		color: #dddddd
 
 	input, textarea
 		padding: 8px 10px

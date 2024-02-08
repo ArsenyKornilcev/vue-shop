@@ -3,8 +3,8 @@
 		:type="type"
 		:class="{
 			positive: positive,
+			positive_secondary: positiveSecondary,
 			negative: negative,
-			neutral: neutral,
 			rounded: rounded,
 			fluid: fluid,
 		}">
@@ -19,8 +19,8 @@
 			text: String,
 			type: String,
 			positive: Boolean,
+			positiveSecondary: Boolean,
 			negative: Boolean,
-			neutral: Boolean,
 			rounded: Boolean,
 			fluid: Boolean,
 		},
@@ -29,6 +29,7 @@
 
 <style lang="sass" scoped>
 	button
+		width: fit-content
 		border-radius: 5px
 		padding: 8px 14px
 		font-weight: bold
@@ -55,6 +56,19 @@
 			&:active
 				color: #ebebeb
 				background: #178f71
+
+			&_secondary
+				background: #591e98
+				color: #f3f3f3
+				padding: 8px 18px
+
+				&:hover
+					background: #6c25b7
+					color: #fff
+
+				&:active
+					background: #4c1a83
+					color: #dddddd
 
 		&.negative
 			background: #3b3b3b

@@ -1,17 +1,19 @@
 <template>
 	<the-panel>
 		<div class="content">
-			<h2 class="text-center">Registration</h2>
+			<h2 class="text-center">Authorization</h2>
 
 			<the-form
 				:inputs="fields"
-				submit-btn-text="Sign Up"
+				submit-btn-text="Sign in"
 				:validate="validateForm">
 			</the-form>
 
 			<div class="after">
-				<p>Already have an account?</p>
-				<router-link :to="{ name: 'auth' }">Sign in</router-link>
+				<p>Don't have an account?</p>
+				<router-link :to="{ name: 'registration' }"
+					>Sign up</router-link
+				>
 			</div>
 		</div>
 	</the-panel>
@@ -22,7 +24,7 @@
 	import TheForm from "../layout/TheForm.vue";
 
 	export default {
-		name: "RegistrationPage",
+		name: "AuthorizationPage",
 
 		components: {
 			ThePanel,
@@ -45,13 +47,6 @@
 						type: "password",
 						required: true,
 						name: "password",
-					},
-					{
-						id: "i3",
-						placeholder: "Repeat password",
-						type: "password",
-						required: true,
-						name: "password-repeat",
 					},
 				],
 			};

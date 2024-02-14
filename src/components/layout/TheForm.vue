@@ -59,6 +59,7 @@
 			<div class="buttons">
 				<the-button
 					positive
+					:fluid="fluidBtns"
 					type="button"
 					@click="submit">
 					{{ submitBtnText }}
@@ -67,6 +68,7 @@
 				<the-button
 					v-if="resetBtnText"
 					negative
+					:fluid="fluidBtns"
 					type="reset"
 					@click="reset">
 					{{ resetBtnText }}
@@ -95,6 +97,7 @@
 			resetBtnText: String,
 			submitBtnText: String,
 			validate: Function,
+			fluidBtns: Boolean,
 		},
 
 		methods: {

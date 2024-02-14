@@ -6,7 +6,8 @@
 			<the-form
 				:inputs="fields"
 				submit-btn-text="Sign Up"
-				:validate="validateForm">
+				:validate="validateForm"
+				fluid-btns>
 			</the-form>
 
 			<div class="after">

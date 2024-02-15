@@ -1,7 +1,21 @@
 <template>
 	<div class="product-list">
+		<div
+			class="search"
+			v-if="search">
+			<input
+				type="text"
+				v-model="searchInput" />
+
+			<the-button
+				positive
+				rounded
+				>Search</the-button
+			>
+		</div>
+
 		<product-card
-			v-for="product in products"
+			v-for="product in filteredProducts"
 			:edit="edit"
 			:key="product.id"
 			:item-id="product.id"
@@ -24,17 +38,32 @@
 
 		props: {
 			edit: Boolean,
+			search: Boolean,
 		},
-		
+
+		data() {
+			return {
+				searchInput: "",
+			};
+		},
+
 		computed: {
 			products() {
 				return this.$store.getters["product/allProducts"];
+			},
+
+			filteredProducts() {
+				return this.products.filter((product) =>
+					product.title.toLowerCase().includes(this.searchInput.trim().toLowerCase())
+				);
 			},
 		},
 	};
 </script>
 
 <style lang="sass" scoped>
+	.search
+		margin-bottom: 40px
 	.product-list
 		display: flex
 		flex-flow: column wrap

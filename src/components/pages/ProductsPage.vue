@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<the-section title="Products" centered-title>
-			<product-list></product-list>
+			<product-list search></product-list>
 		</the-section>
 	</div>
 </template>

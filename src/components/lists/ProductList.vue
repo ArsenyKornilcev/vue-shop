@@ -1,5 +1,5 @@
 <template>
-	<div class="product-list">
+	<div class="products">
 		<div
 			class="search"
 			v-if="search">
@@ -14,15 +14,17 @@
 			>
 		</div>
 
-		<product-card
-			v-for="product in filteredProducts"
-			:edit="edit"
-			:key="product.id"
-			:item-id="product.id"
-			:title="product.title"
-			:description="product.description"
-			:price="product.price"
-			:img-src="product.image"></product-card>
+		<div class="products__list">
+			<product-card
+				v-for="product in filteredProducts"
+				:edit="edit"
+				:key="product.id"
+				:item-id="product.id"
+				:title="product.title"
+				:description="product.description"
+				:price="product.price"
+				:img-src="product.image"></product-card>
+		</div>
 	</div>
 </template>
 
@@ -54,7 +56,9 @@
 
 			filteredProducts() {
 				return this.products.filter((product) =>
-					product.title.toLowerCase().includes(this.searchInput.trim().toLowerCase())
+					product.title
+						.toLowerCase()
+						.includes(this.searchInput.trim().toLowerCase())
 				);
 			},
 		},
@@ -64,10 +68,23 @@
 <style lang="sass" scoped>
 	.search
 		margin-bottom: 40px
-	.product-list
 		display: flex
-		flex-flow: column wrap
-		gap: 30px
-		width: 70%
+		gap: 10px
+
+		input
+			width: 100%
+			border-radius: 15px
+			padding: 8px 12px
+			border: 1px solid #222
+			font-size: 18px
+			outline: none
+
+	.products
+		max-width: 800px
 		margin: 0 auto
+
+		&__list
+			display: flex
+			flex-flow: column wrap
+			gap: 30px
 </style>

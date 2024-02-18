@@ -38,13 +38,24 @@
 					<textarea v-model="itemDescription"> </textarea>
 				</div>
 
-				<the-button
-					positive-secondary
-					rounded
-					@click="addProduct"
+				<div
+					class="btns btns_and_links"
 					v-if="!edit">
-					Add to Cart
-				</the-button>
+					<the-button
+						positive-secondary
+						rounded
+						@click="addProduct">
+						Add to Cart
+					</the-button>
+
+					<router-link
+						:to="{
+							name: 'Product',
+							params: { id: itemId },
+						}">
+						Link
+					</router-link>
+				</div>
 
 				<div
 					class="btns"
@@ -135,6 +146,7 @@
 		display: grid
 		grid-template-columns: min-content 1fr
 		gap: 20px
+		padding-right: 10px
 
 	.card__text
 		display: flex
@@ -175,6 +187,15 @@
 	.btns
 		display: flex
 		gap: 10px
+		align-items: center
+
+		&_and_links
+			justify-content: space-between
+
+		a
+			font-weight: bold
+			color: #61178f
+			text-decoration: none
 
 	span
 		width: fit-content

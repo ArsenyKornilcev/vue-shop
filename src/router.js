@@ -6,6 +6,7 @@ import AdminPage from "@/components/pages/AdminPage";
 import ProductsPage from "@/components/pages/ProductsPage";
 import RegistrationPage from "@/components/pages/RegistrationPage";
 import AuthorizationPage from "@/components/pages/AuthorizationPage";
+import ProductPage from "@/components/pages/ProductPage";
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -14,6 +15,11 @@ const router = createRouter({
 			path: "/",
 			component: ProductsPage,
 			name: "products",
+		},
+		{
+			path: "/product/:id",
+			component: ProductPage,
+			name: "Product",
 		},
 		{
 			path: "/:notFound(.*)",

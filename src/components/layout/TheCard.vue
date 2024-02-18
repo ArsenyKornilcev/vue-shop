@@ -10,9 +10,9 @@
 </script>
 <style scoped>
 	section {
-		border-radius: 1rem;
+		border-radius: 15px;
 		background: #fff;
 		box-shadow: 0 2px 8px #d1d1d1;
-		padding: 1rem;
+		padding: 15px;
 	}
 </style>

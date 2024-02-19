@@ -50,7 +50,7 @@
 
 					<router-link
 						:to="{
-							name: 'Product',
+							name: 'product',
 							params: { id: itemId },
 						}">
 						Link

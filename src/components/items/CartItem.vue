@@ -3,6 +3,8 @@
 		<div class="img">
 			<img :src="imgSrc" />
 			<h2>{{ title }}</h2>
+			<router-link
+				:to="{ name: 'product', params: { id: id } }"></router-link>
 		</div>
 
 		<div class="info">
@@ -72,44 +74,53 @@
 	};
 </script>
 
-<style scoped>
-	.cart-item {
-		width: 300px;
-	}
-	.img {
-		display: grid;
-		grid-template-columns: 100px 1fr;
-		gap: 20px;
-		align-items: center;
-		margin-bottom: 25px;
-	}
-	img {
-		display: block;
-		width: 100px;
-		height: 100px;
-		border-radius: 50%;
-	}
-	h2 {
-		margin: 0;
-	}
-	span {
-		font-weight: bold;
-	}
-	.info {
-		display: flex;
-		justify-content: space-between;
-	}
-	.info p {
-		margin: 0;
-	}
-	.total {
-		border-top: 2px solid #222;
-		border-bottom: 2px solid #222;
-		padding: 5px 0;
-	}
-	.btns {
-		display: flex;
-		gap: 10px;
-		justify-content: flex-end;
-	}
+<style lang="sass" scoped>
+	.cart-item 
+		width: 300px
+	
+	.img 
+		display: grid
+		grid-template-columns: 100px 1fr
+		gap: 20px
+		align-items: center
+		margin-bottom: 25px
+		position: relative
+
+		a
+			z-index: 3
+			position: absolute
+			width: 100%
+			height: 100%
+			top: 0
+			left: 0
+	
+	img 
+		display: block
+		width: 100px
+		height: 100px
+		border-radius: 50%
+	
+	h2 
+		margin: 0
+	
+	span 
+		font-weight: bold
+	
+	.info 
+		display: flex
+		justify-content: space-between
+	
+	.info p 
+		margin: 0
+	
+	.total 
+		border-top: 2px solid #222
+		border-bottom: 2px solid #222
+		padding: 5px 0
+	
+	.btns 
+		display: flex
+		gap: 10px
+		justify-content: flex-end
+	
 </style>

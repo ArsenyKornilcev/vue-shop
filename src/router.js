@@ -19,7 +19,7 @@ const router = createRouter({
 		{
 			path: "/product/:id",
 			component: ProductPage,
-			name: "Product",
+			name: "product",
 		},
 		{
 			path: "/:notFound(.*)",
